@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author 57315
- */
 public class Ingreso extends HttpServlet {
 
     /**
@@ -27,21 +19,29 @@ public class Ingreso extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Ingreso</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Ingreso at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try (PrintWriter out = response.getWriter()) {    
+            if(request.getParameter("opcion").equals("ingresar")){              //Click en ingresar
+                String usuario = request.getParameter("usuario"); 
+                String contrasena = request.getParameter("contrasena");
+                //No se si meter rol aquí tambien, para q no cualquiera pueda crearse una cuenta de admi
+            }
+            if(request.getParameter("registrarse").equals("registrarse")){      //Click en registrarse
+                
+            }
+            if(request.getParameter("contrasena").equals("contrasena")){        //Click en olvidó su contraseña            
+            }
         }
+    }
+    
+    private void ValidarIngreso(String usuario, String contraseña){
+        //SELECT usuario, contrasena FROM 'usuarios' WHERE usuario=usuario;     
+        //Linea (SQL) para consultar en la base de datos  
+        //Crear método "ExisteUsuario()" (retorne boolean [existe ese usuario o no]) en una nueva clase "Usuarios_Tabla" 
+        //ver si la contraseña coincide con la guardada en la base de datos
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
