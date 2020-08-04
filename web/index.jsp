@@ -6,12 +6,27 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="index.css">
+        <title>IngresoPaginaInicio</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form  action="/*VA A LA BASE DE DATOS QUE NO HEMOS CREADO :'V*/'" method="post">
+            <div class="inputslogin">
+                <input type="text" name="usuario" value="" placeholder="Ingrese su usuario" required>
+                <input type="text" name="usuario" value="" placeholder="Ingrese su contraseña" required>
+            </div>
+            <div class="botonIngresoUsuario">
+                <button type="button" name="iniciarSesion">Iniciar Sesion</button>
+            </div>
+            <div class="contenedorOlvidoContraseña">
+                <button type="button" name="olvidoContraseña">¿Olvido su contraseña?</button>
+            </div>
+        </form>
+        <div class="contenedorImagenInicio">
+            <button type="button" name="btnRegistroUsuario">Registrarse</button>
+        </div>
     </body>
 </html>
