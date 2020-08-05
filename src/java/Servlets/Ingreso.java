@@ -1,8 +1,11 @@
 package Servlets;
 
+import Datos.Usuarios_Tabla;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,28 +24,26 @@ public class Ingreso extends HttpServlet {
      */
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException{
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.print("Servlet_Ingreso");
-            if(request.getParameter("opcion").equals("ingresar")){              //Click en ingresar
-                String usuario = request.getParameter("usuario"); 
+            if(request.getParameter("opcion").equals("ingreso")){
+                String correo = request.getParameter("correo"); 
                 String contrasena = request.getParameter("contrasena");
-                //No se si meter rol aquí tambien, para q no cualquiera pueda crearse una cuenta de admi
+                out.print(ValidarIngreso(correo,contrasena));
             }
             if(request.getParameter("registrarse").equals("registrarse")){      //Click en registrarse
-                
+                out.print(request.getParameter("opcion"));
             }
             if(request.getParameter("contrasena").equals("contrasena")){        //Click en olvidó su contraseña            
+                out.print(request.getParameter("opcion"));
             }
         }
     }
     
-    private void ValidarIngreso(String usuario, String contraseña){
-        //SELECT usuario, contrasena FROM 'usuarios' WHERE usuario=usuario;     
-        //Linea (SQL) para consultar en la base de datos  
-        //Crear método "ExisteUsuario()" (retorne boolean [existe ese usuario o no]) en una nueva clase "Usuarios_Tabla" 
-        //ver si la contraseña coincide con la guardada en la base de datos
+    private boolean ValidarIngreso(String usuario, String contrasena){
+        Usuarios_Tabla UT = new Usuarios_Tabla();
+        return UT.ExisteUsuario(usuario, contrasena);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

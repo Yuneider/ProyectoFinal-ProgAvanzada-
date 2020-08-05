@@ -23,6 +23,7 @@
                     <div><input type="password" name="contrasena" value="" placeholder="Contraseña" required></div>
                     <br>
                     <div><input class="boton" type="submit" value="INICIAR SESIÓN"></div>
+                    <input type="hidden" name="opcion" value="ingreso">
                 </div>
             </form>
             <br>

@@ -10,7 +10,6 @@ public class Conexion {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = (Connection) DriverManager.  getConnection("jdbc:mysql://localhost/pf_agendarcitas","yune","yuneider");
-            System.out.println("completado");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
