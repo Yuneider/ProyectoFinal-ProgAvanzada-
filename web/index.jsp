@@ -9,24 +9,37 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="index.css">
-        <title>IngresoPaginaInicio</title>
+        <link href="CSS/Ingreso.css" rel="stylesheet" type="text/css"/>
+        <script src="JS/index.js" type="text/javascript"></script>
+        <title>Medinice-Plus</title>
     </head>
-    <body>
-        <form  action="Ingreso" method="post">
-            <div class="inputslogin">
-                <input type="text" name="usuario" value="" placeholder="Ingrese su usuario" required>
-                <input type="text" name="usuario" value="" placeholder="Ingrese su contraseña" required>
-            </div>
-            <div class="botonIngresoUsuario">
-                <button type="button" name="iniciarSesion">Iniciar Sesion</button>
-            </div>
-            <div class="contenedorOlvidoContraseña">
-                <button type="button" name="olvidoContraseña">¿Olvido su contraseña?</button>
-            </div>
-        </form>
-        <div class="contenedorImagenInicio">
-            <button type="button" name="btnRegistroUsuario">Registrarse</button>
+    <body class="fondo">
+        <div class="login-centrado">
+            <form  action="Ingreso" method="post">    
+                <div><img class="img-logo" src="FILES/Logo.png"></div>
+                <div id="datos_ingreso">
+                    <div><input type="text" name="correo" placeholder="Correo electrónico" required></div>
+                    <br>
+                    <div><input type="password" name="contrasena" value="" placeholder="Contraseña" required></div>
+                    <br>
+                    <div><input class="boton" type="submit" value="INICIAR SESIÓN"></div>
+                </div>
+            </form>
+            <br>
+            <div><input class="olvido-contra" type="submit" onclick="Recuperar()" id="recuperar" value="¿Olvido su contraseña?" ></div>        
+            <form action="Ingreso" method="post">
+                <div id="olvido_contrasena" style="display: none;">
+                    <br>
+                    <p>Para recuperar su contraseña se enviara un codigo de verificacion al correo correspondiente a su cuenta
+                        , digite por favor el correo electronico con el que se encuentra registrado.</p>
+                    <div><input type="text" placeholder="Correo electrónico" required></div>
+                    <br>
+                    <div><input class="boton" type="submit" onclick="Cambiar()" value="ENVIAR"></div>
+                </div>
+            </form>    
+            <div id="nuevo_paciente" class="registro-nuevo">
+                <p class="parrafo-npaciente">En caso de ser nuevo en Medicine-Plus <a href="Registro.jsp" class="nuevo-paciente" > Registrarse aquí</a> y agende su primera cita en minutos.</p>
+            </div>    
         </div>
     </body>
 </html>

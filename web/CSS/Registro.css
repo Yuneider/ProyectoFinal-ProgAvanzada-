@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 5/08/2020, 02:19:11 AM
+    Author     : Jhony Caro
+*/
+body{
+    background-color: rgb(30,32,33);
+}
+.p-registro{
+    align-items: center;
+    text-align: center;
+    background-color: rgb(30,32,33);
+    margin-top: 5%;
+}
+input{
+    width: 300px; height: 40px;
+    background-color: rgb(24,26,27);
+    border: 0;
+    padding-left: 20px;
+    font-family: "Latin Modern Roman 10";
+    font-size: large;
+    border-radius: 3px;
+}
+.img-logo{
+    margin-bottom: 50px;
+}
+.info-paciente-nuevo{
+    font-family: "Latin Modern Roman 10";
+    font-size: x-large;
+    font-weight: bold;
+}
+p{
+    padding-left: 15%; padding-right: 15%;
+    text-align: justify;
+    font-family: "Latin Modern Roman 10";
+    font-size: large;
+    color: rgb(53, 144, 213);
+    font-style: italic;
+    margin-bottom: 30px;
+}
+.boton{
+    width: 320px; height: 45px;
+    background-color: rgb(128, 38, 38);
+    font-family: "Latin Modern Roman 10";
+    font-size: large;
+    border:0; 
+    border-radius: 5px;
+    color: rgb(155, 157, 158);
+}
+
+.boton-registro{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

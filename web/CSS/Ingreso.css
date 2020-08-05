@@ -1,0 +1,70 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4/08/2020, 10:22:21 PM
+    Author     : Jhony Caro
+*/
+
+.login-centrado{
+    align-items: center;
+    text-align: center;
+    background-color: rgb(30,32,33);
+    margin-top: 10%;
+}
+.fondo{
+    background-color: rgb(30,32,33);
+}
+input{
+    width: 300px; height: 40px;
+    background-color: rgb(24,26,27);
+    border: 0;
+    padding-left: 20px;
+    font-family: "Latin Modern Roman 10";
+    font-size: large;
+    border-radius: 3px;
+}
+.boton{
+    width: 320px; height: 45px;
+    background-color: rgb(128, 38, 38);
+    font-family: "Latin Modern Roman 10";
+    font-size: large;
+    border:0; 
+    border-radius: 5px;
+    color: rgb(155, 157, 158);
+}
+.olvido-contra{
+    background-color: rgb(30,32,33);
+    border:0;
+    color: rgb(92, 165, 221);
+    font-family: "Latin Modern Roman 10";
+    font-size: medium;
+}
+.registro-nuevo{
+    color: white;
+    margin-top: 5%;    
+}
+.nuevo-paciente{
+    border:0;
+    background-color: rgb(30,32,33) ;
+    color: rgb(92, 165, 221);
+    font-family: "Latin Modern Roman 10";
+    font-size: large;
+}
+.parrafo-npaciente{
+    font-family: "Latin Modern Roman 10";
+    font-size: large;    
+}
+.img-logo{
+    margin-bottom: 50px;
+}
+p{
+    padding-left: 30%; padding-right: 30%;
+    text-align: justify;
+    font-family: "Latin Modern Roman 10";
+    font-size: large;
+    color: rgb(153, 153, 153);
+    margin-bottom: 30px;
+}
