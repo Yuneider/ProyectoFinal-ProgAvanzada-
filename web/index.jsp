@@ -13,7 +13,7 @@
         <title>IngresoPaginaInicio</title>
     </head>
     <body>
-        <form  action="/*VA A LA BASE DE DATOS QUE NO HEMOS CREADO :'V*/'" method="post">
+        <form  action="Ingreso" method="post">
             <div class="inputslogin">
                 <input type="text" name="usuario" value="" placeholder="Ingrese su usuario" required>
                 <input type="text" name="usuario" value="" placeholder="Ingrese su contraseña" required>
