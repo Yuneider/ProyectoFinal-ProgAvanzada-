@@ -9,7 +9,7 @@ public class Paciente {
     private String correo;
     private String dir;
     private String barrio;
-    private int celular;
+    private String celular;
 
     public int getDni() {
         return dni;
@@ -59,11 +59,11 @@ public class Paciente {
         this.barrio = barrio;
     }
 
-    public int getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
     

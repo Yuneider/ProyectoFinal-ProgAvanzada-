@@ -27,7 +27,7 @@ public class Ingreso extends HttpServlet {
             throws ServletException, IOException{
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            if(request.getParameter("opcion").equals("ingreso")){
+                if(request.getParameter("opcion").equals("ingreso")){
                 String correo = request.getParameter("correo"); 
                 String contrasena = request.getParameter("contrasena");
                 out.print(bd.ExisteUsuario_Usuarios(correo, contrasena));
@@ -35,12 +35,13 @@ public class Ingreso extends HttpServlet {
             if(request.getParameter("opcion").equals("registrarse")){      //Click en registrarse
                 Paciente p = new Paciente();
                 p.setBarrio(request.getParameter("barrio"));
-                p.setCelular(Integer.parseInt(request.getParameter("celular")));
+                p.setCelular(request.getParameter("celular"));
                 p.setCorreo(request.getParameter("correo"));
                 p.setDir(request.getParameter("direccion"));
                 p.setDni(Integer.parseInt(request.getParameter("dni")));
                 p.setUsuario(request.getParameter("nombre")); 
                 p.setEdad(CalcularEdad(request.getParameter("fecha_nacimiento")));
+                
                 bd.InsertarPaciente_Pacientes(p);
                 out.print("hecho");
             }

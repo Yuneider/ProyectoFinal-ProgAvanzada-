@@ -67,13 +67,14 @@ public class BaseDeDatos {
                  ps.setString(4, p.getCorreo());
                  ps.setString(5, p.getDir());
                  ps.setString(6, p.getBarrio());
-                 ps.setInt(7, p.getCelular());
+                 ps.setString(7, p.getCelular());
                  ps.executeUpdate();
+                 //crear usuario
+                 //verificar correo
              }
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    
     
 }
