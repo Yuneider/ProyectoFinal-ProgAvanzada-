@@ -39,9 +39,10 @@ public class Ingreso extends HttpServlet {
                 p.setCorreo(request.getParameter("correo"));
                 p.setDir(request.getParameter("direccion"));
                 p.setDni(Integer.parseInt(request.getParameter("dni")));
-                p.setUsuario(request.getParameter("nombre")); 
+                p.setUsuario(request.getParameter("usuario")); 
                 p.setEdad(CalcularEdad(request.getParameter("fecha_nacimiento")));
-                
+                p.setNombre(request.getParameter("nombre"));
+                p.setContrasena(request.getParameter("contra"));
                 bd.InsertarPaciente_Pacientes(p);
                 out.print("hecho");
             }

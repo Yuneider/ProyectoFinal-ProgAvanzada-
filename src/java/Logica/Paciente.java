@@ -10,6 +10,24 @@ public class Paciente {
     private String dir;
     private String barrio;
     private String celular;
+    private String nombre;
+    private String contrasena;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public int getDni() {
         return dni;
