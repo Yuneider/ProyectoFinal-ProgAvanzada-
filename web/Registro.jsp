@@ -13,16 +13,15 @@
         <title>Medinice-Plus</title>
     </head>
     <body>
-        <form action="Ingreso" id="usuarioRegistrado" method="get">
-                
-            <div class="p-registro">
-                <div><img class="img-logo" src="FILES/Logo.png"></div>
-                <div><p>¡Bienvenido! Medicine-Plus es una plataforma creada pensando en el bienestar de todos y cada uno de los Colombianos 
-                    ¿Estas cansado de llamar a las lineas de atencion de tu EPS y tardar media hora agendando una cita?
-                    Con Medicine-Plus puedes agendar citas de: Medicina general, Promocion y Prevencion (PyP), Optometria,
-                    Odontologia, Consegeria profesional y muchas mas especialidades en solo minutos. Ademas, manejamos convenios
-                    con las mejores clinicas y hospitales de Bogotá para poder ofrecerte la mejor atencion cerca a tu casa.</p>
-                </div>
+        <div class="p-registro">
+            <div><img class="img-logo" src="FILES/Logo.png"></div>
+            <div><p>¡Bienvenido! Medicine-Plus es una plataforma creada pensando en el bienestar de todos y cada uno de los Colombianos 
+                ¿Estas cansado de llamar a las lineas de atencion de tu EPS y tardar media hora agendando una cita?
+                Con Medicine-Plus puedes agendar citas de: Medicina general, Promocion y Prevencion (PyP), Optometria,
+                Odontologia, Consegeria profesional y muchas mas especialidades en solo minutos. Ademas, manejamos convenios
+                con las mejores clinicas y hospitales de Bogotá para poder ofrecerte la mejor atencion cerca a tu casa.</p>
+            </div>
+            <form action="Ingreso" id="usuarioRegistrado" method="post">
                 <div class="info-paciente-nuevo">
                     <div>Doc. de identidad: <input type="number" name="dni" id= "dni" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Campo obligatorio" required></div>
                     <br>
@@ -41,11 +40,12 @@
                     <div>Contraseña: <input type="password" name="contra" id= "contra" placeholder="Campo obligatorio"></div>
                     <br>
                     <div>Confirmación: <input type="password" name="contra_confirmacion" id= "contra_confirmacion" placeholder="Campo obligatorio"></div> 
+                    <input type="hidden" name="opcion" value="registrarse">
                 </div>
                 <div class="boton-registro">
                     <input type="submit" class="boton" value="Registrarse">
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </body>
 </html>

@@ -20,7 +20,7 @@
                 <div id="datos_ingreso">
                     <div><input type="text" name="correo" placeholder="Correo electrónico" required></div>
                     <br>
-                    <div><input type="password" name="contrasena" value="" placeholder="Contraseña" required></div>
+                    <div><input type="password" name="contrasena" placeholder="Contraseña" required></div>
                     <br>
                     <div><input class="boton" type="submit" value="INICIAR SESIÓN"></div>
                     <input type="hidden" name="opcion" value="ingreso">
@@ -33,9 +33,10 @@
                     <br>
                     <p>Para recuperar su contraseña se enviara un codigo de verificacion al correo correspondiente a su cuenta
                         , digite por favor el correo electronico con el que se encuentra registrado.</p>
-                    <div><input type="text" placeholder="Correo electrónico" required></div>
+                    <div><input type="text" name="correo_olvido" placeholder="Correo electrónico" required></div>
                     <br>
                     <div><input class="boton" type="submit" onclick="Cambiar()" value="ENVIAR"></div>
+                    <input type="hidden" name="opcion" value="olvido_contrasena">
                 </div>
             </form>    
             <div id="nuevo_paciente" class="registro-nuevo">
