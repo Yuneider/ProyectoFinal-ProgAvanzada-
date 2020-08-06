@@ -1,11 +1,9 @@
 package Servlets;
 
-import Datos.Usuarios_Tabla;
+import Datos.BaseDeDatos;
+import Logica.Paciente;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +21,8 @@ public class Ingreso extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
+    BaseDeDatos bd = new BaseDeDatos();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         response.setContentType("text/html;charset=UTF-8");
@@ -30,22 +30,30 @@ public class Ingreso extends HttpServlet {
             if(request.getParameter("opcion").equals("ingreso")){
                 String correo = request.getParameter("correo"); 
                 String contrasena = request.getParameter("contrasena");
-                out.print(ValidarIngreso(correo,contrasena));
+                out.print(bd.ExisteUsuario_Usuarios(correo, contrasena));
             }
-            if(request.getParameter("registrarse").equals("registrarse")){      //Click en registrarse
-                out.print(request.getParameter("opcion"));
+            if(request.getParameter("opcion").equals("registrarse")){      //Click en registrarse
+                Paciente p = new Paciente();
+                p.setBarrio(request.getParameter("barrio"));
+                p.setCelular(Integer.parseInt(request.getParameter("celular")));
+                p.setCorreo(request.getParameter("correo"));
+                p.setDir(request.getParameter("direccion"));
+                p.setDni(Integer.parseInt(request.getParameter("dni")));
+                p.setUsuario(request.getParameter("nombre")); 
+                p.setEdad(CalcularEdad(request.getParameter("fecha_nacimiento")));
+                bd.InsertarPaciente_Pacientes(p);
+                out.print("hecho");
             }
-            if(request.getParameter("contrasena").equals("contrasena")){        //Click en olvidó su contraseña            
+            if(request.getParameter("opcion").equals("contrasena")){        //Click en olvidó su contraseña            
                 out.print(request.getParameter("opcion"));
             }
         }
     }
     
-    private boolean ValidarIngreso(String usuario, String contrasena){
-        Usuarios_Tabla UT = new Usuarios_Tabla();
-        return UT.ExisteUsuario(usuario, contrasena);
+    private int CalcularEdad(String fecha){
+        return 2020-Integer.parseInt(String.valueOf(fecha.charAt(0))+String.valueOf(fecha.charAt(1))+String.valueOf(fecha.charAt(2))+String.valueOf(fecha.charAt(3)));
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
