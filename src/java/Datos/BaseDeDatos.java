@@ -1,6 +1,6 @@
 package Datos;
 
-import Logica.Paciente;
+import Logica.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -60,6 +60,16 @@ public class BaseDeDatos {
         }
     }
     
+    public void EliminarUsuario_Usuarios(String usuario){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `usuarios` WHERE usuario=?;");
+            ps.setString(1, usuario);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
     private boolean ValidarPaciente_Pacientes(int dni){
         try{
             PreparedStatement ps = con.Conexion().prepareStatement("SELECT dni FROM `pacientes` WHERE dni=?;");
@@ -108,6 +118,88 @@ public class BaseDeDatos {
         } catch (SQLException e) {
             System.out.println(e);
         }
+    }
+    
+    public void EliminarPaciente_Pacientes(int dni){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `pacientes` WHERE dni=?;");
+            ps.setInt(1, dni);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void InsertarDoctor_Doctores(Doctor d){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `doctores` (hospital,nombre,especialidad,horario) VALUES(?,?,?,?);");
+            ps.setString(1, d.getHospital());
+            ps.setString(2, d.getNombre());
+            ps.setString(3, d.getEspecialidad());
+            ps.setString(4, d.getHorario());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void EliminarDoctor_Doctores(String nombre){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `doctores` WHERE nombre=?;");
+            ps.setString(1, nombre);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void InsertarCita_Citas(Cita c){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `citas` (lugar,fecha,hora,especialista,estado) VALUES(?,?,?,?,?);");
+            ps.setString(1, c.getLugar());
+            ps.setString(2, c.getFecha());
+            ps.setInt(3, c.getHora());
+            ps.setString(4, c.getEspecialista());
+            ps.setString(5, c.getEstado());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void EliminarCita_Citas(int id){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `citas` WHERE id=?;");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void InsertarHospital_Hospitales(Hospital h){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `hospitales` (hospital,dir,barrio) VALUES(?,?,?);");
+            ps.setString(1, h.getNombre());
+            ps.setString(2, h.getDir());
+            ps.setString(3, h.getBarrio());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void EliminarHospital_Hospitales(String nombre){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `hospitales` WHERE hospital=?;");
+            ps.setString(1, nombre);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public static void main(String[] args) {
     }
     
 }
