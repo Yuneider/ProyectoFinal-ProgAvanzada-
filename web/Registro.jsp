@@ -10,6 +10,7 @@
     <head>
         <meta charset="utf-8">
         <link href="CSS/Registro.css" rel="stylesheet" type="text/css"/>
+        <script src="JS/Regristro.js" type="text/javascript"></script>
         <title>Medinice-Plus</title>
     </head>
     <body>
@@ -21,29 +22,38 @@
                 Odontologia, Consegeria profesional y muchas mas especialidades en solo minutos. Ademas, manejamos convenios
                 con las mejores clinicas y hospitales de Bogotá para poder ofrecerte la mejor atencion cerca a tu casa.</p>
             </div>
-            <form action="Ingreso" id="usuarioRegistrado" method="post">
-                <div class="info-paciente-nuevo">
-                    <div>Doc. de identidad: <input type="number" name="dni" id= "dni" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Campo obligatorio" required></div>
-                    <br>
-                    <div>Nombre Completo: <input type="text" name="nombre" id= "nombre" placeholder="Campo obligatorio" required></div>
-                    <br>
-                    <div>Fecha de nacimiento: <input type="date" name="fecha_nacimiento" id= "fecha_nacimiento" max="2019-12-31" min="1920-01-01" value="2000-05-26" required></div>
-                    <br>
-                    <div>Correo electrónico: <input type="text" name="correo" id= "correo" placeholder="Campo obligatorio" required></div>    
-                    <br>
-                    <div>Número de celular: <input type="number" name="celular" id= "celular" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Campo obligatorio" required></div>
-                    <br>
-                    <div>Dir. de residencia: <input type="text" name="direccion" id= "direccion" placeholder="Campo obligatorio"></div>
-                    <br>
-                    <div>Barrio/Localidad: <input type="text" name="barrio" id= "barrio" placeholder="Campo opcional"></div>        
-                    <br>
-                    <div>Contraseña: <input type="password" name="contra" id= "contra" placeholder="Campo obligatorio"></div>
-                    <br>
-                    <div>Confirmación: <input type="password" name="contra_confirmacion" id= "contra_confirmacion" placeholder="Campo obligatorio"></div> 
+            <div class="etiquetas">
+                <div class="etiqueta">Doc. de identidad: <span class="campo-obligatorio">(*)</span></div>
+                <div class="etiqueta">Nombre Completo: <span class="campo-obligatorio">(*)</span></div>
+                <div class="etiqueta">Fecha de nacimiento: <span class="campo-obligatorio">(*)</span></div>
+                <div class="etiqueta">Correo electrónico: <span class="campo-obligatorio">(*)</span></div>
+                <div class="etiqueta">Número de celular: <span class="campo-obligatorio">(*)</span></div>
+                <div class="etiqueta">Dir. de residencia: <span class="campo-obligatorio">(*)</span></div>
+                <div class="etiqueta">Barrio/Localidad:</div>
+                <div class="etiqueta">Usuario: <span class="campo-obligatorio">(*)</span></div>
+                <div class="etiqueta">Contraseña: <span class="campo-obligatorio">(*)</span></div>
+                <div class="etiqueta">Confirmación contraseña: <span class="campo-obligatorio">(*)</span></div>
+            </div>
+            <form id="usuarioRegistrado" method="post" autocomplete="off" >
+                <div class="entrada-info">
+                    <input type="number" name="dni" id= "dni" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="123456789" required>
+                    <div> <input type="text" name="nombre" id= "nombre" placeholder="Daniel Garay" required></div>
+                    <div> <input type="date" name="fecha_nacimiento" id= "fecha_nacimiento" max="2019-12-31" min="1920-01-01" value="2000-05-26" required></div>
+                    <div> <input type="text" name="correo" id= "correo" placeholder="daniel.garay@correo.com" required></div>    
+                    <div> <input type="number" name="celular" id= "celular" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="3101110000" required></div>
+                    <div> <input type="text" name="direccion" id= "direccion" placeholder="Carrera 5 # 26b - 30"></div>
+                    <div> <input type="text" name="barrio" id= "barrio"></div>
+                    <div> <input type="text" name="usuario" id= "usuario" placeholder="DGARAY" required></div>
+                    <div> <input type="password" name="contra" id= "contra">
+                        <button class="boton-ver" onclick="mostrarContrasena()">
+                            <img class="img-ver" src="FILES/Ver.png" alt=""/>
+                        </button>
+                    </div>
+                    <div> <input type="password" name="contra_confirmacion" id= "contra_confirmacion"></div> 
                     <input type="hidden" name="opcion" value="registrarse">
                 </div>
                 <div class="boton-registro">
-                    <input type="submit" class="boton" value="Registrarse">
+                    <input type="submit" class="boton" value="Registrarse" onclick="Validar()">
                 </div>
             </form>
         </div>

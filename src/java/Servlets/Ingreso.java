@@ -27,7 +27,7 @@ public class Ingreso extends HttpServlet {
             throws ServletException, IOException{
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-                if(request.getParameter("opcion").equals("ingreso")){
+            if(request.getParameter("opcion").equals("ingreso")){       //Click en ingresar
                 String correo = request.getParameter("correo"); 
                 String contrasena = request.getParameter("contrasena");
                 out.print(bd.ExisteUsuario_Usuarios(correo, contrasena));

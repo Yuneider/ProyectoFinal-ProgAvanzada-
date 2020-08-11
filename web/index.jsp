@@ -15,12 +15,16 @@
     </head>
     <body class="fondo">
         <div class="login-centrado">
-            <form  action="Ingreso" method="post">    
+            <form  action="Ingreso" method="post" autocomplete="off">    
                 <div><img class="img-logo" src="FILES/Logo.png"></div>
                 <div id="datos_ingreso">
-                    <div><input type="text" name="correo" placeholder="Correo electrónico" required></div>
+                    <div><input class="correo" type="text" name="correo" placeholder="Usuario" required></div>
                     <br>
-                    <div><input type="password" name="contrasena" placeholder="Contraseña" required></div>
+                    <div><input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+                        <button class="boton-ver" onclick="mostrarContrasena()">
+                            <img class="img-ver" src="FILES/Ver.png" alt=""/>
+                        </button>
+                    </div>
                     <br>
                     <div><input class="boton" type="submit" value="INICIAR SESIÓN"></div>
                     <input type="hidden" name="opcion" value="ingreso">
@@ -28,7 +32,7 @@
             </form>
             <br>
             <div><input class="olvido-contra" type="submit" onclick="Recuperar()" id="recuperar" value="¿Olvido su contraseña?" ></div>        
-            <form action="Ingreso" method="post">
+            <form action="Ingreso" method="post" autocomplete="off">
                 <div id="olvido_contrasena" style="display: none;">
                     <br>
                     <p>Para recuperar su contraseña se enviara un codigo de verificacion al correo correspondiente a su cuenta

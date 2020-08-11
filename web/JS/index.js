@@ -16,6 +16,15 @@ function Recuperar(){
         var cambio = document.getElementById("recuperar").value = "¿Olvido su contraseña?";
     }
 }
+function mostrarContrasena(){
+    event.preventDefault();
+    var tipo = document.getElementById("contrasena");
+    if(tipo.type == "password"){
+    	tipo.type = "text";
+    }else{
+        tipo.type = "password";
+    }
+}
 
 
 
