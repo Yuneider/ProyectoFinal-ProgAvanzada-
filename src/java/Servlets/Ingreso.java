@@ -28,23 +28,33 @@ public class Ingreso extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             if(request.getParameter("opcion").equals("ingreso")){       //Click en ingresar
-                String correo = request.getParameter("correo"); 
-                String contrasena = request.getParameter("contrasena");
-                out.print(bd.ExisteUsuario_Usuarios(correo, contrasena));
+                String usuario = request.getParameter("usuario"); 
+                String contrasena = request.getParameter("contrasena"); 
+                if(bd.ExisteUsuario_Usuarios(usuario, contrasena)){   //usuario existe
+                    // Validar rol
+                    
+                    out.print("ingreso correctamente");
+                }else{
+                    response.sendRedirect("index.jsp");
+                }
             }
             if(request.getParameter("opcion").equals("registrarse")){      //Click en registrarse
-                Paciente p = new Paciente();
-                p.setBarrio(request.getParameter("barrio"));
-                p.setCelular(request.getParameter("celular"));
-                p.setCorreo(request.getParameter("correo"));
-                p.setDir(request.getParameter("direccion"));
-                p.setDni(Integer.parseInt(request.getParameter("dni")));
-                p.setUsuario(request.getParameter("usuario")); 
-                p.setEdad(CalcularEdad(request.getParameter("fecha_nacimiento")));
-                p.setNombre(request.getParameter("nombre"));
-                p.setContrasena(request.getParameter("contra"));
-                bd.InsertarPaciente_Pacientes(p);
-                out.print("hecho");
+                if(bd.ValidarUsuario_Usuarios("usuario")){                 //El usuario no existe
+                    Paciente p = new Paciente();
+                    p.setBarrio(request.getParameter("barrio"));
+                    p.setCelular(request.getParameter("celular"));
+                    p.setCorreo(request.getParameter("correo"));
+                    p.setDir(request.getParameter("direccion"));
+                    p.setDni(Integer.parseInt(request.getParameter("dni")));
+                    p.setUsuario(request.getParameter("usuario")); 
+                    p.setEdad(CalcularEdad(request.getParameter("fecha_nacimiento")));
+                    p.setNombre(request.getParameter("nombre"));
+                    p.setContrasena(request.getParameter("contra"));
+                    bd.InsertarPaciente_Pacientes(p);
+                    response.sendRedirect("InicioPaciente.jsp");
+                }else{                                                  //El usuario ya existe
+                    response.sendRedirect("Registro.jsp");
+                }
             }
             if(request.getParameter("opcion").equals("contrasena")){        //Click en olvidó su contraseña            
                 out.print(request.getParameter("opcion"));

@@ -3,10 +3,11 @@ package Logica;
 public class Cita {
 
     private int id;
-    private String lugar;
+    private String hospital;
     private String fecha; 
     private int hora;
-    private String especialista;
+    private String doctor;
+    private String paciente;
     private String estado;
 
     public int getId() {
@@ -16,13 +17,13 @@ public class Cita {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public String getLugar() {
-        return lugar;
+
+    public String getHospital() {
+        return hospital;
     }
 
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 
     public String getFecha() {
@@ -41,12 +42,20 @@ public class Cita {
         this.hora = hora;
     }
 
-    public String getEspecialista() {
-        return especialista;
+    public String getDoctor() {
+        return doctor;
     }
 
-    public void setEspecialista(String especialista) {
-        this.especialista = especialista;
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+
+    public String getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(String paciente) {
+        this.paciente = paciente;
     }
 
     public String getEstado() {
@@ -56,5 +65,6 @@ public class Cita {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
     
 }

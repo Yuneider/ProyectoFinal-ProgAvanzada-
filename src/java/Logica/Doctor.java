@@ -5,7 +5,6 @@ public class Doctor {
     private String hospital;
     private String nombre;
     private String especialidad;
-    private String horario;
 
     public String getHospital() {
         return hospital;
@@ -29,14 +28,6 @@ public class Doctor {
 
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
-    }
-
-    public String getHorario() {
-        return horario;
-    }
-
-    public void setHorario(String horario) {
-        this.horario = horario;
     }
     
 }

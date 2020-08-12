@@ -18,7 +18,7 @@
             <form  action="Ingreso" method="post" autocomplete="off">    
                 <div><img class="img-logo" src="FILES/Logo.png"></div>
                 <div id="datos_ingreso">
-                    <div><input class="correo" type="text" name="correo" placeholder="Usuario" required></div>
+                    <div><input class="usuario" type="text" name="usuario" placeholder="Usuario" required></div>
                     <br>
                     <div><input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
                         <button class="boton-ver" onclick="mostrarContrasena()">

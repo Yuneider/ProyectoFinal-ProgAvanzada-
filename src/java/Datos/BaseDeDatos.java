@@ -31,7 +31,7 @@ public class BaseDeDatos {
         }
     }
     
-    private boolean ValidarUsuario_Usuarios(String usuario){
+    public boolean ValidarUsuario_Usuarios(String usuario){
         try{
             PreparedStatement ps = con.Conexion().prepareStatement("SELECT usuario FROM `usuarios` WHERE usuario=?;");
             ps.setString(1, usuario);
@@ -132,11 +132,10 @@ public class BaseDeDatos {
     
     public void InsertarDoctor_Doctores(Doctor d){
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `doctores` (hospital,nombre,especialidad,horario) VALUES(?,?,?,?);");
+            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `doctores` (hospital,nombre,especialidad) VALUES(?,?,?);");
             ps.setString(1, d.getHospital());
             ps.setString(2, d.getNombre());
             ps.setString(3, d.getEspecialidad());
-            ps.setString(4, d.getHorario());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -155,21 +154,22 @@ public class BaseDeDatos {
     
     public void InsertarCita_Citas(Cita c){
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `citas` (lugar,fecha,hora,especialista,estado) VALUES(?,?,?,?,?);");
-            ps.setString(1, c.getLugar());
+            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `citas` (hospital,fecha,hora,doctor,paciente,estado) VALUES(?,?,?,?,?,?);");
+            ps.setString(1, c.getHospital());
             ps.setString(2, c.getFecha());
             ps.setInt(3, c.getHora());
-            ps.setString(4, c.getEspecialista());
-            ps.setString(5, c.getEstado());
+            ps.setString(4, c.getDoctor());
+            ps.setString(5, c.getPaciente());
+            ps.setString(6, c.getEstado());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
     
-    public void EliminarCita_Citas(int id){
+    public void CancelarCita_Citas(int id){ //TERMINAR FUNCION - SETEAR ESTADO A CANCELADA
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `citas` WHERE id=?;");
+            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `citas` (estado) WHERE id=?;"); 
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -179,7 +179,7 @@ public class BaseDeDatos {
     
     public void InsertarHospital_Hospitales(Hospital h){
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `hospitales` (hospital,dir,barrio) VALUES(?,?,?);");
+            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `hospitales` (nombre,dir,barrio) VALUES(?,?,?);");
             ps.setString(1, h.getNombre());
             ps.setString(2, h.getDir());
             ps.setString(3, h.getBarrio());
@@ -189,9 +189,9 @@ public class BaseDeDatos {
         }
     }
     
-    public void EliminarHospital_Hospitales(String nombre){
+    public void EliminarHospital_Hospitales(String nombre){ //ELIMINAR DOCTORES DE ESE HOSPITAL
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `hospitales` WHERE hospital=?;");
+            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `hospitales` WHERE nombre=?;");
             ps.setString(1, nombre);
             ps.executeUpdate();
         } catch (SQLException ex) {
