@@ -54,7 +54,6 @@ public class BaseDeDatos {
             }else{
                 System.out.println("Usuario repetido");
             }
-            
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -70,7 +69,7 @@ public class BaseDeDatos {
         }
     }
     
-    private boolean ValidarPaciente_Pacientes(int dni){
+    public boolean ValidarPaciente_Pacientes(int dni){
         try{
             PreparedStatement ps = con.Conexion().prepareStatement("SELECT dni FROM `pacientes` WHERE dni=?;");
             ps.setString(1, String.valueOf(dni));
@@ -82,7 +81,7 @@ public class BaseDeDatos {
         }
     }
     
-    private boolean ValidarUsuario_Pacientes(String usuario){
+    public boolean ValidarUsuario_Pacientes(String usuario){
         try{
             PreparedStatement ps = con.Conexion().prepareStatement("SELECT usuario FROM `pacientes` WHERE usuario=?;");
             ps.setString(1, usuario);
@@ -130,13 +129,29 @@ public class BaseDeDatos {
         }
     }
     
+    public boolean ValidarNombreDoctor_Doctores(String nombre){
+        try{
+            PreparedStatement ps = con.Conexion().prepareStatement("SELECT nombre FROM `doctores` WHERE nombre=?;");
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }catch(SQLException ex) {
+            Logger.getLogger(BaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
     public void InsertarDoctor_Doctores(Doctor d){
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `doctores` (hospital,nombre,especialidad) VALUES(?,?,?);");
-            ps.setString(1, d.getHospital());
-            ps.setString(2, d.getNombre());
-            ps.setString(3, d.getEspecialidad());
-            ps.executeUpdate();
+            if(!ValidarNombreDoctor_Doctores(d.getNombre())){
+                PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `doctores` (hospital,nombre,especialidad) VALUES(?,?,?);");
+                ps.setString(1, d.getHospital());
+                ps.setString(2, d.getNombre());
+                ps.setString(3, d.getEspecialidad());
+                ps.executeUpdate();
+            }else{
+                System.out.println("Nombre repetido");
+            }
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -160,30 +175,70 @@ public class BaseDeDatos {
             ps.setInt(3, c.getHora());
             ps.setString(4, c.getDoctor());
             ps.setString(5, c.getPaciente());
-            ps.setString(6, c.getEstado());
+            ps.setString(6, "Programada");
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
     
-    public void CancelarCita_Citas(int id){ //TERMINAR FUNCION - SETEAR ESTADO A CANCELADA
+    public void CancelarCita_Citas(int id){ 
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `citas` (estado) WHERE id=?;"); 
-            ps.setInt(1, id);
+            PreparedStatement ps = con.Conexion().prepareStatement("UPDATE citas SET estado=? WHERE id=?;"); 
+            ps.setString(1, "Cancelada");
+            ps.setInt(2, id);
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
     
+    public void CitaRealizada_Citas(int id){ 
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("UPDATE citas SET estado=? WHERE id=?;"); 
+            ps.setString(1, "Realizada");
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public boolean ValidarNombreHospital_Hospitales(String nombre){
+        try{
+            PreparedStatement ps = con.Conexion().prepareStatement("SELECT nombre FROM `hospitales` WHERE nombre=?;");
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }catch(SQLException ex) {
+            Logger.getLogger(BaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    public boolean ValidarDirHospital_Hospitales(String dir){
+        try{
+            PreparedStatement ps = con.Conexion().prepareStatement("SELECT dir FROM `hospitales` WHERE dir=?;");
+            ps.setString(1, dir);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }catch(SQLException ex) {
+            Logger.getLogger(BaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
     public void InsertarHospital_Hospitales(Hospital h){
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `hospitales` (nombre,dir,barrio) VALUES(?,?,?);");
-            ps.setString(1, h.getNombre());
-            ps.setString(2, h.getDir());
-            ps.setString(3, h.getBarrio());
-            ps.executeUpdate();
+            if(!ValidarNombreHospital_Hospitales(h.getNombre()) && !ValidarDirHospital_Hospitales(h.getDir())){
+                PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `hospitales` (nombre,dir,barrio) VALUES(?,?,?);");
+                ps.setString(1, h.getNombre());
+                ps.setString(2, h.getDir());
+                ps.setString(3, h.getBarrio());
+                ps.executeUpdate();
+            }else{
+                System.out.println("El hospital ya existe");
+            } 
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -191,14 +246,20 @@ public class BaseDeDatos {
     
     public void EliminarHospital_Hospitales(String nombre){ //ELIMINAR DOCTORES DE ESE HOSPITAL
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `hospitales` WHERE nombre=?;");
-            ps.setString(1, nombre);
-            ps.executeUpdate();
+            PreparedStatement ps1 = con.Conexion().prepareStatement("Delete FROM `hospitales` WHERE nombre=?;");
+            ps1.setString(1, nombre);
+            ps1.executeUpdate();
+            PreparedStatement ps2 = con.Conexion().prepareStatement("SELECT nombre FROM `doctores` WHERE hospital=?;");
+            ps2.setString(1, nombre);
+            ResultSet rs = ps2.executeQuery();
+            while(rs.next()){
+                EliminarDoctor_Doctores(rs.getString("nombre"));
+            }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
+ 
     public static void main(String[] args) {
     }
     
