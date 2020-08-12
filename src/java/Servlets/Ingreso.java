@@ -1,6 +1,7 @@
 package Servlets;
 
 import Datos.BaseDeDatos;
+import Logica.Admin;
 import Logica.Paciente;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,6 +23,7 @@ public class Ingreso extends HttpServlet {
      */
     
     BaseDeDatos bd = new BaseDeDatos();
+    Admin ad = new Admin();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
@@ -56,8 +58,9 @@ public class Ingreso extends HttpServlet {
                     response.sendRedirect("Registro.jsp");
                 }
             }
-            if(request.getParameter("opcion").equals("contrasena")){        //Click en olvidó su contraseña            
-                out.print(request.getParameter("opcion"));
+            if(request.getParameter("opcion").equals("olvido_contrasena")){        //Click en olvidó su contraseña            
+                String correo = request.getParameter("correo_olvido"); 
+                ad.EnviarCorreo(correo, "Estamos trabajando en ello", "¿Olvidaste tu contraseña?");
             }
         }
     }

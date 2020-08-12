@@ -11,12 +11,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Admin {
-
-    public static void main(String[] args) {
-        EnviarCorreo("jhonycaro1998@gmail.com","holi","prueba de mariconeria salió positiva");
-    }
     
-    public static void EnviarCorreo(String correo,String mensaje, String asunto){
+    public void EnviarCorreo(String correo,String mensaje, String asunto){
         Properties propiedad = new Properties();
         propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
         propiedad.setProperty("mail.smtp.starttls.enable", "true");
@@ -40,12 +36,11 @@ public class Admin {
         }
     }
 
-    public static void ApaHabla(String mensaje){
+    public void ApaHabla(String mensaje){
         VoiceManager manager = VoiceManager.getInstance();
         Voice voz = manager.getVoice("kevin16");
         voz.allocate();
         voz.speak(mensaje);
         voz.deallocate();
     }
-    
 }
