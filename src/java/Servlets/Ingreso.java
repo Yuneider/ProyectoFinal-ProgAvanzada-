@@ -5,6 +5,13 @@ import Logica.Admin;
 import Logica.Paciente;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +30,6 @@ public class Ingreso extends HttpServlet {
      */
     
     BaseDeDatos bd = new BaseDeDatos();
-    Admin ad = new Admin();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
@@ -33,9 +39,15 @@ public class Ingreso extends HttpServlet {
                 String usuario = request.getParameter("usuario"); 
                 String contrasena = request.getParameter("contrasena"); 
                 if(bd.ExisteUsuario_Usuarios(usuario, contrasena)){   //usuario existe
-                    // Validar rol
-                    
-                    out.print("ingreso correctamente");
+                    if(bd.GetRol_Usuarios(usuario).equals("Paciente")){
+                        response.sendRedirect("InicioPaciente.jsp");
+                    }
+                    if(bd.GetRol_Usuarios(usuario).equals("Admin")){
+                        response.sendRedirect("InicioAdministrador.jsp");
+                    }
+                    if(bd.GetRol_Usuarios(usuario).equals("Doctor")){
+                        response.sendRedirect("InicioDoctor.jsp");
+                    }
                 }else{
                     response.sendRedirect("index.jsp");
                 }
@@ -53,15 +65,44 @@ public class Ingreso extends HttpServlet {
                     p.setNombre(request.getParameter("nombre"));
                     p.setContrasena(request.getParameter("contra"));
                     bd.InsertarPaciente_Pacientes(p);
-                    response.sendRedirect("InicioPaciente.jsp");
+                    response.sendRedirect("InicioPaciente.jsp");    //como saber con cual paciente ingresó 
                 }else{                                                  //El usuario ya existe
                     response.sendRedirect("Registro.jsp");
                 }
             }
             if(request.getParameter("opcion").equals("olvido_contrasena")){        //Click en olvidó su contraseña            
-                String correo = request.getParameter("correo_olvido"); 
-                ad.EnviarCorreo(correo, "Estamos trabajando en ello", "¿Olvidaste tu contraseña?");
+                String correo = request.getParameter("correo_olvido");
+                String mensaje ="Buen día. \n\n"
+                        + "Esta es su contraseña: "+bd.GetContra_Usuarios(bd.GetUsuario_Pacientes(correo))+" "
+                        + "recomentamos su uso adecuando.\n\n"
+                        + "Muchas gracias por usar nuestros servicios.";
+                EnviarCorreo(correo, mensaje, "¿Olvidaste tu contraseña?");
+                response.sendRedirect("index.jsp");
             }
+        }
+    }
+    
+    private void EnviarCorreo(String correo,String mensaje, String asunto){
+        Properties propiedad = new Properties();
+        propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
+        propiedad.setProperty("mail.smtp.starttls.enable", "true");
+        propiedad.setProperty("mail.smtp.port", "587");
+        propiedad.setProperty("mail.smtp.auth", "true");
+        Session sesion = Session.getDefaultInstance(propiedad);
+        String correoEnvia = "cgpmedicineplus@gmail.com";
+        String contrasena = "CGPMedicine";
+        MimeMessage mail = new MimeMessage(sesion);
+        try {
+            mail.setFrom(new InternetAddress(correoEnvia));
+            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(correo));
+            mail.setSubject(asunto);
+            mail.setText(mensaje);
+            Transport transporte = sesion.getTransport("smtp");
+            transporte.connect(correoEnvia,contrasena);
+            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
+            transporte.close();
+        } catch (MessagingException ex) {
+            System.out.println(ex);
         }
     }
     

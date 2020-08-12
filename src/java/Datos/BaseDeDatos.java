@@ -69,6 +69,34 @@ public class BaseDeDatos {
         }
     }
     
+    public String GetRol_Usuarios(String usuario){
+         try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Select rol FROM `usuarios` WHERE usuario=?;");
+            ps.setString(1, usuario);
+            ResultSet rs = ps.executeQuery();
+            return rs.getString("rol");
+         } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+    
+    public String GetContra_Usuarios(String usuario){
+         try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Select contrasena FROM `usuarios` WHERE usuario=?;");
+            ps.setString(1, usuario);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getString("contrasena");
+            }else{
+                return null;
+            }
+         } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+    
     public boolean ValidarPaciente_Pacientes(int dni){
         try{
             PreparedStatement ps = con.Conexion().prepareStatement("SELECT dni FROM `pacientes` WHERE dni=?;");
@@ -126,6 +154,22 @@ public class BaseDeDatos {
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
+        }
+    }
+    
+    public String GetUsuario_Pacientes(String correo){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Select usuario FROM `pacientes` WHERE correo=?;");
+            ps.setString(1, correo);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getString("usuario");
+            }else{
+                return null;
+            }
+         } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
         }
     }
     
@@ -258,9 +302,6 @@ public class BaseDeDatos {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-    }
- 
-    public static void main(String[] args) {
     }
     
 }

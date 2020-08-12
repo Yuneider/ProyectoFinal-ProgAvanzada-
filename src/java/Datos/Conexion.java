@@ -16,9 +16,4 @@ public class Conexion {
         return conexion;
     }
     
-    public static void main(String[] args) {
-        Conexion cbd = new Conexion();
-        cbd.Conexion();
-    }
-    
 }
