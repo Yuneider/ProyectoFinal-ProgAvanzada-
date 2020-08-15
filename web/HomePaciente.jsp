@@ -22,7 +22,7 @@
           <div class="contenedorGeneral">
             <li><a href="AgendarCitas.jsp"><img src="FILES/estudiar.png"><h2>Agendar una cita</h2></a></li>
             <li><a href="CancelarCita.jsp"><img src="FILES/cancelar.png"><h2>Cancelar una cita</h2></a></li>
-            <li><a href="HistorialCita.jsp"><img src="FILES/historial.png"><h2>Historial de citas</h2></a></li>
+            <li><a href="HistorialCitas.jsp"><img src="FILES/historial.png"><h2>Historial de citas</h2></a></li>
           </div>
         </ul>
     </section>

@@ -9,7 +9,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="homePaciente.css">
+    <link rel="stylesheet" href="CSS/HomePaciente.css">
     <title>Agendar_Citas</title>
   </head>
   <body>

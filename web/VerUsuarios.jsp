@@ -36,6 +36,7 @@
           <td>AQUI VA EL Célular</td>
           <td class="links">
             <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Editar</a>
+            <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Eliminar</a>
           </td>
         </tr>
       </table>

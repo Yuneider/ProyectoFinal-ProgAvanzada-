@@ -214,6 +214,26 @@ public class BaseDeDatos {
         }
     }
     
+    public Doctor GetDoctor_Doctores(String nombre){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Select * FROM `doctores` WHERE nombre=?;");
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Doctor d = new Doctor();
+                d.setNombre(rs.getString("nombre"));
+                d.setHospital(rs.getString("hospital"));
+                d.setEspecialidad(rs.getString("especialidad"));
+                return d;
+            }else{
+                return null;
+            }
+         } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+    
     public void InsertarDoctor_Doctores(Doctor d){
         try {
             if(!ValidarNombreDoctor_Doctores(d.getNombre())){
@@ -333,5 +353,5 @@ public class BaseDeDatos {
             System.out.println(ex);
         }
     }
-    
+ 
 }

@@ -2,6 +2,7 @@ package Servlets;
 
 import Datos.BaseDeDatos;
 import Logica.Admin;
+import Logica.Doctor;
 import Logica.Paciente;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,6 +49,8 @@ public class Ingreso extends HttpServlet {
                         response.sendRedirect("HomeAdmin.jsp");
                     }
                     if(bd.GetRol_Usuarios(usuario).equals("Doctor")){
+                        Doctor d = bd.GetDoctor_Doctores(usuario);
+                        request.getSession().setAttribute("doctor", d);
                         response.sendRedirect("HomeDoctor.jsp");
                     }
                 }else{
@@ -67,7 +70,7 @@ public class Ingreso extends HttpServlet {
                     p.setNombre(request.getParameter("nombre"));
                     p.setContrasena(request.getParameter("contra"));
                     bd.InsertarPaciente_Pacientes(p);
-                    response.sendRedirect("HomePaciente.jsp");  //como saber con cual paciente ingresó 
+                    response.sendRedirect("index.jsp");
                 }else{                                                  //El usuario ya existe
                     response.sendRedirect("Registro.jsp");
                 }
