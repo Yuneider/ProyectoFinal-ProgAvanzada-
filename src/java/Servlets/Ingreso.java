@@ -40,20 +40,22 @@ public class Ingreso extends HttpServlet {
                 String contrasena = request.getParameter("contrasena"); 
                 if(bd.ExisteUsuario_Usuarios(usuario, contrasena)){   //usuario existe
                     if(bd.GetRol_Usuarios(usuario).equals("Paciente")){
-                        response.sendRedirect("InicioPaciente.jsp");
+                        Paciente p = bd.GetPaciente_Pacientes(usuario);
+                        request.getSession().setAttribute("paciente", p);
+                        response.sendRedirect("HomePaciente.jsp");
                     }
                     if(bd.GetRol_Usuarios(usuario).equals("Admin")){
-                        response.sendRedirect("InicioAdministrador.jsp");
+                        response.sendRedirect("HomeAdmin.jsp");
                     }
                     if(bd.GetRol_Usuarios(usuario).equals("Doctor")){
-                        response.sendRedirect("InicioDoctor.jsp");
+                        response.sendRedirect("HomeDoctor.jsp");
                     }
                 }else{
                     response.sendRedirect("index.jsp");
                 }
             }
             if(request.getParameter("opcion").equals("registrarse")){      //Click en registrarse
-                if(bd.ValidarUsuario_Usuarios("usuario")){                 //El usuario no existe
+                if(!bd.ValidarUsuario_Usuarios("usuario")){                 //El usuario no existe
                     Paciente p = new Paciente();
                     p.setBarrio(request.getParameter("barrio"));
                     p.setCelular(request.getParameter("celular"));
@@ -65,7 +67,7 @@ public class Ingreso extends HttpServlet {
                     p.setNombre(request.getParameter("nombre"));
                     p.setContrasena(request.getParameter("contra"));
                     bd.InsertarPaciente_Pacientes(p);
-                    response.sendRedirect("InicioPaciente.jsp");    //como saber con cual paciente ingresó 
+                    response.sendRedirect("HomePaciente.jsp");  //como saber con cual paciente ingresó 
                 }else{                                                  //El usuario ya existe
                     response.sendRedirect("Registro.jsp");
                 }

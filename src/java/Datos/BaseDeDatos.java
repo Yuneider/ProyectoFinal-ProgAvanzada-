@@ -43,13 +43,13 @@ public class BaseDeDatos {
         }
     }
     
-    public void InsertarUsuario_Usuarios(String usuario, String contrasena){
+    public void InsertarUsuario_Usuarios(String usuario, String contrasena,String rol){
         try {
             if(!ValidarUsuario_Usuarios(usuario)){
                 PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `usuarios` (usuario,contrasena,rol) VALUES(?,?,?);");
                 ps.setString(1, usuario);
                 ps.setString(2, contrasena);
-                ps.setString(3, "paciente");
+                ps.setString(3, rol);
                 ps.executeUpdate();
             }else{
                 System.out.println("Usuario repetido");
@@ -74,7 +74,11 @@ public class BaseDeDatos {
             PreparedStatement ps = con.Conexion().prepareStatement("Select rol FROM `usuarios` WHERE usuario=?;");
             ps.setString(1, usuario);
             ResultSet rs = ps.executeQuery();
-            return rs.getString("rol");
+            if(rs.next()){
+                return rs.getString("rol");
+            }else{
+                return null;
+            }
          } catch (SQLException ex) {
             System.out.println(ex);
             return null;
@@ -140,7 +144,7 @@ public class BaseDeDatos {
                  ps.setString(7, p.getBarrio());
                  ps.setString(8, p.getCelular());
                  ps.executeUpdate();
-                 InsertarUsuario_Usuarios(p.getUsuario(),p.getContrasena());
+                 InsertarUsuario_Usuarios(p.getUsuario(),p.getContrasena(),"Paciente");
              }
         } catch (SQLException e) {
             System.out.println(e);
@@ -173,6 +177,31 @@ public class BaseDeDatos {
         }
     }
     
+     public Paciente GetPaciente_Pacientes(String usuario){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Select * FROM `pacientes` WHERE usuario=?;");
+            ps.setString(1, usuario);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Paciente p = new Paciente();
+                p.setDni(rs.getInt("dni"));
+                p.setNombre(rs.getString("nombre"));
+                p.setEdad(rs.getInt("edad"));
+                p.setCorreo(rs.getString("correo"));
+                p.setCelular(rs.getString("celular"));
+                p.setBarrio(rs.getString("barrio"));
+                p.setDir(rs.getString("dir"));
+                p.setUsuario(rs.getString("usuario"));
+                return p;
+            }else{
+                return null;
+            }
+         } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+    
     public boolean ValidarNombreDoctor_Doctores(String nombre){
         try{
             PreparedStatement ps = con.Conexion().prepareStatement("SELECT nombre FROM `doctores` WHERE nombre=?;");
@@ -193,6 +222,7 @@ public class BaseDeDatos {
                 ps.setString(2, d.getNombre());
                 ps.setString(3, d.getEspecialidad());
                 ps.executeUpdate();
+                InsertarUsuario_Usuarios (d.getNombre(),d.getNombre(),"Doctor");
             }else{
                 System.out.println("Nombre repetido");
             }

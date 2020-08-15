@@ -34,7 +34,7 @@
                 <div class="etiqueta">Contraseña: <span class="campo-obligatorio">(*)</span></div>
                 <div class="etiqueta">Confirmación contraseña: <span class="campo-obligatorio">(*)</span></div>
             </div>
-            <form id="usuarioRegistrado" method="post" autocomplete="off" >
+            <form action="Ingreso" id="usuarioRegistrado" method="post" autocomplete="off" >
                 <div class="entrada-info">
                     <input type="number" name="dni" id= "dni" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="123456789" required>
                     <div> <input type="text" name="nombre" id= "nombre" placeholder="Daniel Garay" required></div>
