@@ -37,9 +37,9 @@
     </section>
     <div id="Navegacion">
       <ul>
-        <li><a href="homePaciente.html">Inicio</a></li>
-        <li><a href="PerfilPaciente.html">Ver Perfil</a></li>
-        <li><a href="index.html">Cerrar Sesión</a></li>
+        <li><a href="homePaciente.jsp">Inicio</a></li>
+        <li><a href="PerfilPaciente.jsp">Ver Perfil</a></li>
+        <li><a href="index.jsp">Cerrar Sesión</a></li>
       </ul>
     </div>
   </body>

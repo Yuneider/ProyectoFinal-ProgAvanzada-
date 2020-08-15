@@ -10,7 +10,7 @@
     <head>
         <meta charset="utf-8">
         <link href="CSS/Registro.css" rel="stylesheet" type="text/css"/>
-        <script src="JS/Regristro.js" type="text/javascript"></script>
+        <script src="JS/Regristro.js" type="text/javascript"></script>        
         <title>Medinice-Plus</title>
     </head>
     <body>
@@ -22,40 +22,43 @@
                 Odontologia, Consegeria profesional y muchas mas especialidades en solo minutos. Ademas, manejamos convenios
                 con las mejores clinicas y hospitales de Bogotá para poder ofrecerte la mejor atencion cerca a tu casa.</p>
             </div>
-            <div class="etiquetas">
-                <div class="etiqueta">Doc. de identidad: <span class="campo-obligatorio">(*)</span></div>
-                <div class="etiqueta">Nombre Completo: <span class="campo-obligatorio">(*)</span></div>
-                <div class="etiqueta">Fecha de nacimiento: <span class="campo-obligatorio">(*)</span></div>
-                <div class="etiqueta">Correo electrónico: <span class="campo-obligatorio">(*)</span></div>
-                <div class="etiqueta">Número de celular: <span class="campo-obligatorio">(*)</span></div>
-                <div class="etiqueta">Dir. de residencia: <span class="campo-obligatorio">(*)</span></div>
-                <div class="etiqueta">Barrio/Localidad:</div>
-                <div class="etiqueta">Usuario: <span class="campo-obligatorio">(*)</span></div>
-                <div class="etiqueta">Contraseña: <span class="campo-obligatorio">(*)</span></div>
-                <div class="etiqueta">Confirmación contraseña: <span class="campo-obligatorio">(*)</span></div>
-            </div>
-            <form action="Ingreso" id="usuarioRegistrado" method="post" autocomplete="off" >
-                <div class="entrada-info">
-                    <input type="number" name="dni" id= "dni" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="123456789" required>
-                    <div> <input type="text" name="nombre" id= "nombre" placeholder="Daniel Garay" required></div>
-                    <div> <input type="date" name="fecha_nacimiento" id= "fecha_nacimiento" max="2019-12-31" min="1920-01-01" value="2000-05-26" required></div>
-                    <div> <input type="text" name="correo" id= "correo" placeholder="daniel.garay@correo.com" required></div>    
-                    <div> <input type="number" name="celular" id= "celular" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="3101110000" required></div>
-                    <div> <input type="text" name="direccion" id= "direccion" placeholder="Carrera 5 # 26b - 30"></div>
-                    <div> <input type="text" name="barrio" id= "barrio"></div>
-                    <div> <input type="text" name="usuario" id= "usuario" placeholder="DGARAY" required></div>
-                    <div> <input type="password" name="contra" id= "contra">
-                        <button class="boton-ver" onclick="mostrarContrasena()">
-                            <img class="img-ver" src="FILES/Ver.png" alt=""/>
-                        </button>
+            <div class="msj-campo-obl" id="campos_obligatorios"></div>
+            <div>
+                <div class="etiquetas">
+                    <div class="etiqueta">Doc. de identidad: <span id="valDocumento" class="campo-obligatorio"></span></div>
+                    <div class="etiqueta">Nombre Completo: <span id="valNombre" class="campo-obligatorio"></span></div>
+                    <div class="etiqueta">Fecha de nacimiento: <span class="campo-obligatorio"></span></div>
+                    <div class="etiqueta">Correo electrónico: <span id="valCorreo" class="campo-obligatorio"></span></div>
+                    <div class="etiqueta">Número de celular: <span id="valCelular" class="campo-obligatorio"></span></div>
+                    <div class="etiqueta">Dir. de residencia: <span id="valDireccion" class="campo-obligatorio"></span></div>
+                    <div class="etiqueta">Barrio/Localidad:</div>
+                    <div class="etiqueta">Usuario: <span class="campo-obligatorio" id="valUsuario"></span></div>
+                    <div class="etiqueta">Contraseña: <span id="valContrasena" class="campo-obligatorio"></span></div>
+                    <div class="etiqueta">Confirmación contraseña: <span id="valConfirmacion"class="campo-obligatorio"></span></div>
+                </div>
+                <form id="usuarioRegistrado" method="post" autocomplete="off" >
+                    <div class="entrada-info">
+                        <input type="number" name="dni" id= "dni" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="123456789">
+                        <div> <input type="text" name="nombre" id= "nombre" placeholder="Daniel Garay"></div>
+                        <div> <input type="date" name="fecha_nacimiento" id= "fecha_nacimiento" max="2019-12-31" min="1920-01-01" value="2000-05-26"></div>
+                        <div> <input type="text" name="correo" id= "correo" placeholder="daniel.garay@correo.com"></div>    
+                        <div> <input type="number" name="celular" id= "celular" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="3101110000"></div>
+                        <div> <input type="text" name="direccion" id= "direccion" placeholder="Carrera 5 # 26b - 30"></div>
+                        <div> <input type="text" name="barrio" id= "barrio"></div>
+                        <div> <input type="text" name="usuario" id= "usuario" placeholder="DGARAY"></div>
+                        <div> <input type="password" name="contra" id= "contra">
+                            <button class="boton-ver" onclick="mostrarContrasena()">
+                                <img class="img-ver" src="FILES/Ver.png" alt=""/>
+                            </button>
+                        </div>
+                        <div> <input type="password" name="contra_confirmacion" id= "contra_confirmacion"></div> 
+                        <input type="hidden" name="opcion" value="registrarse">
                     </div>
-                    <div> <input type="password" name="contra_confirmacion" id= "contra_confirmacion"></div> 
-                    <input type="hidden" name="opcion" value="registrarse">
-                </div>
-                <div class="boton-registro">
-                    <input type="submit" class="boton" value="Registrarse" onclick="Validar()">
-                </div>
-            </form>
+                    <div class="boton-registro">
+                        <input type="button" class="boton" onclick="validarAjax()" value="Registrarse">
+                    </div>
+                </form>
+            </div>    
         </div>
     </body>
 </html>

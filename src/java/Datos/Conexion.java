@@ -9,7 +9,8 @@ public class Conexion {
         Connection conexion=null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = (Connection) DriverManager.  getConnection("jdbc:mysql://localhost/pf_agendarcitas","yune","yuneider");
+            conexion = (Connection) DriverManager.  getConnection("jdbc:mysql://localhost:3308/pf_agendarcitas","root","");
+            System.out.println("CONECTADO");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

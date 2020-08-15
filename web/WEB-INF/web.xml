@@ -4,9 +4,17 @@
         <servlet-name>Ingreso</servlet-name>
         <servlet-class>Servlets.Ingreso</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Validaciones</servlet-name>
+        <servlet-class>Servlets.Validaciones</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Ingreso</servlet-name>
         <url-pattern>/Ingreso</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Validaciones</servlet-name>
+        <url-pattern>/Validaciones</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

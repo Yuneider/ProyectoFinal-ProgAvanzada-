@@ -78,6 +78,12 @@ p{
 .campo-obligatorio{
     color: rgb(182, 3, 3);
 }
+.msj-campo-obl{
+    width: 100%;
+    color: rgb(182, 3, 3);
+    font-family: "Latin Modern Roman 10";
+    font-size: 15pt;
+}
 .boton-ver{
     height: 30px;
     width: 50px;

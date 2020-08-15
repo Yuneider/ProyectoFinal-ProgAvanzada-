@@ -58,22 +58,18 @@ public class Ingreso extends HttpServlet {
                 }
             }
             if(request.getParameter("opcion").equals("registrarse")){      //Click en registrarse
-                if(!bd.ValidarUsuario_Usuarios("usuario")){                 //El usuario no existe
-                    Paciente p = new Paciente();
-                    p.setBarrio(request.getParameter("barrio"));
-                    p.setCelular(request.getParameter("celular"));
-                    p.setCorreo(request.getParameter("correo"));
-                    p.setDir(request.getParameter("direccion"));
-                    p.setDni(Integer.parseInt(request.getParameter("dni")));
-                    p.setUsuario(request.getParameter("usuario")); 
-                    p.setEdad(CalcularEdad(request.getParameter("fecha_nacimiento")));
-                    p.setNombre(request.getParameter("nombre"));
-                    p.setContrasena(request.getParameter("contra"));
-                    bd.InsertarPaciente_Pacientes(p);
-                    response.sendRedirect("index.jsp");
-                }else{                                                  //El usuario ya existe
-                    response.sendRedirect("Registro.jsp");
-                }
+                Paciente p = new Paciente();
+                p.setBarrio(request.getParameter("barrio"));
+                p.setCelular(request.getParameter("celular"));
+                p.setCorreo(request.getParameter("correo"));
+                p.setDir(request.getParameter("direccion"));
+                p.setDni(Integer.parseInt(request.getParameter("dni")));
+                p.setUsuario(request.getParameter("usuario")); 
+                p.setEdad(CalcularEdad(request.getParameter("fecha_nacimiento")));
+                p.setNombre(request.getParameter("nombre"));
+                p.setContrasena(request.getParameter("contra"));
+                bd.InsertarPaciente_Pacientes(p);
+                response.sendRedirect("index.jsp");
             }
             if(request.getParameter("opcion").equals("olvido_contrasena")){        //Click en olvidó su contraseña            
                 String correo = request.getParameter("correo_olvido");
