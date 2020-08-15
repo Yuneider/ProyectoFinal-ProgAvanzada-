@@ -4,7 +4,18 @@
     Author     : Familia Garay
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="Datos.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    Conexion con = new Conexion();
+    Connection c = con.Conexion();
+    String sqr = "select * from pacientes";
+    PreparedStatement ps = c.prepareStatement(sqr);
+    ResultSet rs=ps.executeQuery();
+%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -23,22 +34,24 @@
       </div>
       <table>
         <thead>
-          <th>DNI</th><th>Usuario</th><th>Edad</th><th>Correo</th><th>Contraseña</th><th>Dirección</th><th>Barrio</th><th>Célular</th><th>Acciones</th>
+          <th>DNI</th><th>Nombre</th><th>Edad</th><th>Correo</th><th>Dirección</th><th>Barrio</th><th>Célular</th><th>Usuario</th><th>Acciones</th>
         </thead>
+        <%while(rs.next()){%>
         <tr>
-          <td>AQUI VA EL DNI</td>
-          <td>AQUI VA EL Usuario</td>
-          <td>AQUI VA LA Edad</td>
-          <td>AQUI VA EL Correo</td>
-          <td>AQUI VA EL Contraseña</td>
-          <td>AQUI VA EL Dirección</td>
-          <td>AQUI VA EL Barrio</td>
-          <td>AQUI VA EL Célular</td>
+          <td><% out.print(rs.getInt("dni"));%></td>
+          <td><% out.print(rs.getString("nombre"));%></td>
+          <td><% out.print(rs.getInt("edad"));%></td>
+          <td><% out.print(rs.getString("correo"));%></td>
+          <td><% out.print(rs.getString("dir"));%></td>
+          <td><% out.print(rs.getString("barrio"));%></td>
+          <td><% out.print(rs.getString("celular"));%></td>
+          <td><% out.print(rs.getString("usuario"));%></td>
           <td class="links">
             <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Editar</a>
             <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Eliminar</a>
           </td>
         </tr>
+        <% }%>
       </table>
     </section>
     <div id="Navegacion">
