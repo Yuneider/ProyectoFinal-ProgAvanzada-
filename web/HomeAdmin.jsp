@@ -21,7 +21,7 @@
       </header>
         <ul class="sci">
           <div class="contenedorGeneral">
-            <li><a href="VerUsuarios.jsp"><img src="FILES/grupo.png"><h2>Usuarios</h2></a></li>
+            <li><a href="VerPacientes.jsp"><img src="FILES/grupo.png"><h2>Usuarios</h2></a></li>
             <li><a href="VerDoctores.jsp"><img src="FILES/doctor.png"><h2>Doctores</h2></a></li>
           </div>
         </ul>

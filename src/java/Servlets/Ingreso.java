@@ -80,6 +80,14 @@ public class Ingreso extends HttpServlet {
                 EnviarCorreo(correo, mensaje, "¿Olvidaste tu contraseña?");
                 response.sendRedirect("index.jsp");
             }
+            if(request.getParameter("opcion").equals("eliminarDoctor")){   //click en Eliminar Doctor
+                bd.EliminarDoctor_Doctores(request.getParameter("usuario"));
+                response.sendRedirect("VerDoctores.jsp");
+            }
+            if(request.getParameter("opcion").equals("eliminarPaciente")){   //click en Eliminar Paciente
+                bd.EliminarPaciente_Pacientes(Integer.parseInt(request.getParameter("dni")),request.getParameter("usuario"));
+                response.sendRedirect("VerPacientes.jsp");
+            }
         }
     }
     

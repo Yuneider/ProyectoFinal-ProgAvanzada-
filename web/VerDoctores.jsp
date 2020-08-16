@@ -32,7 +32,7 @@
       <h1>Citas Programadas</h1>
       <table>
         <thead>
-          <th>Hospital</th><th>Doctor(nombre)</th><th>Especialidad</th><th>Horario</th><th>Acciones</th>
+          <th>Hospital</th><th>Doctor(nombre)</th><th>Especialidad</th><th>Horario</th><th>Usuario</th><th>Acciones</th>
         </thead>
         <%while(rs.next()){%>
         <tr>
@@ -40,9 +40,10 @@
           <td><% out.print(rs.getString("nombre"));%></td>
           <td><% out.print(rs.getString("especialidad"));%></td>
           <td>8:00 - 17:00</td>
+          <td><% out.print(rs.getString("usuario"));%></td>
           <td class="links">
             <a href="EditarDoctor.jsp">Editar</a>
-            <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Eliminar</a>
+            <a href="Ingreso?opcion=eliminarDoctor&usuario=<%= rs.getString("usuario")%>">Eliminar</a>
           </td>
         </tr>
         <% }%>
@@ -53,8 +54,8 @@
     </section>
     <div id="Navegacion">
       <ul>
-        <li><a href="HomeAdmin.html">Inicio</a></li>
-        <li><a href="index.html">Cerrar Sesión</a></li>
+        <li><a href="HomeAdmin.jsp">Inicio</a></li>
+        <li><a href="index.jsp">Cerrar Sesión</a></li>
       </ul>
     </div>
   </body>

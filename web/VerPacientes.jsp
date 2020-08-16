@@ -30,7 +30,7 @@
         <div id="toggle" onclick="toggle()"></div>
       </header>
       <div class="Titulo">
-        <h1>Usuarios</h1>
+        <h1>Pacientes</h1>
       </div>
       <table>
         <thead>
@@ -48,7 +48,7 @@
           <td><% out.print(rs.getString("usuario"));%></td>
           <td class="links">
             <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Editar</a>
-            <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Eliminar</a>
+            <a href="Ingreso?opcion=eliminarPaciente&usuario=<%= rs.getString("usuario")%>&dni=<%= rs.getString("dni")%>">Eliminar</a>
           </td>
         </tr>
         <% }%>
@@ -56,8 +56,8 @@
     </section>
     <div id="Navegacion">
       <ul>
-        <li><a href="HomeAdmin.html">Inicio</a></li>
-        <li><a href="index.html">Cerrar Sesión</a></li>
+        <li><a href="HomeAdmin.jsp">Inicio</a></li>
+        <li><a href="index.jsp">Cerrar Sesión</a></li>
       </ul>
     </div>
   </body>

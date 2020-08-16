@@ -151,11 +151,12 @@ public class BaseDeDatos {
         }
     }
     
-    public void EliminarPaciente_Pacientes(int dni){
+    public void EliminarPaciente_Pacientes(int dni,String usuario){
         try {
             PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `pacientes` WHERE dni=?;");
             ps.setInt(1, dni);
             ps.executeUpdate();
+            EliminarUsuario_Usuarios(usuario);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -251,10 +252,10 @@ public class BaseDeDatos {
         }
     }
     
-    public void EliminarDoctor_Doctores(String nombre){
+    public void EliminarDoctor_Doctores(String usuario){
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `doctores` WHERE nombre=?;");
-            ps.setString(1, nombre);
+            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `doctores` WHERE usuario=?;");
+            ps.setString(1, usuario);
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
