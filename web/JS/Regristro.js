@@ -10,8 +10,19 @@ function validarAjax() {
     if(document.getElementById("dni").value == ""){
         document.getElementById("valDocumento").innerHTML = "(*)";
     }else{
-        document.getElementById("valDocumento").innerHTML = "";
-        validaciones=validaciones+1;
+        
+        const url = "Validaciones?tipoValidacion=existeDni&dni="+ document.getElementById("dni").value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("valDocumento").innerHTML = this.responseText;
+                if(this.responseText == ""){
+                    validaciones=validaciones+1;
+                }        
+            }
+        };
+        xhttp.open("POST", url, true);
+        xhttp.send();
     }
     
     //Campo nombre
@@ -73,13 +84,11 @@ function validarAjax() {
                 document.getElementById("valUsuario").innerHTML = this.responseText;
                 if(this.responseText == ""){
                     if(document.getElementById("contra").value != document.getElementById("contra_confirmacion").value){
-                        event.preventDefault();
                         alert("Las contraseñas son diferentes");
                     }else{  
                         if(validaciones==7){
                             document.getElementById("usuarioRegistrado").action="Ingreso";
                             document.getElementById("usuarioRegistrado").submit();
-                            
                         }
                     }
                 }        

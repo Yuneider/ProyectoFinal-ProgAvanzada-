@@ -25,7 +25,32 @@ function mostrarContrasena(){
         tipo.type = "password";
     }
 }
-
-
-
-
+function ingresar(){
+    var validaciones=0;
+    
+    if(document.getElementById("usuario").value != ""){
+        validaciones=validaciones+1;
+    }
+    
+    if(document.getElementById("contrasena").value != ""){
+        validaciones=validaciones+1;
+    }
+    
+    if(validaciones!=2){
+        document.getElementById("error_ingreso").innerHTML = "Error: Debe compretar los campos obligatorios.";
+    }else{
+        const url = "Validaciones?tipoValidacion=ingresoCorrecto&usuario="+document.getElementById("usuario").value+"&contrasena="+document.getElementById("contrasena").value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("error_ingreso").innerHTML = this.responseText;
+                if(this.responseText == ""){
+                    document.getElementById("datos").action="Ingreso";
+                    document.getElementById("datos").submit();
+                }        
+            }
+        };
+        xhttp.open("POST", url, true);
+        xhttp.send();
+    }
+}

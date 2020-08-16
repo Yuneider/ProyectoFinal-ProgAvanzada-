@@ -62,12 +62,12 @@ p{
 }
 .etiquetas{
     float: left;
-    width: 25%; height: 550px;
+    width: 28%; height: 550px;
     font-family: "Latin Modern Roman 10";
     font-size: 15pt;
     /*font-weight: bold;*/
     text-align: left;
-    padding-left: 25%;
+    padding-left: 22%;
     color: rgb(210, 217, 250);
 }
 .entrada-info{

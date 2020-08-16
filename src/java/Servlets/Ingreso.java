@@ -38,25 +38,21 @@ public class Ingreso extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             if(request.getParameter("opcion").equals("ingreso")){       //Click en ingresar
                 String usuario = request.getParameter("usuario"); 
-                String contrasena = request.getParameter("contrasena"); 
-                if(bd.ExisteUsuario_Usuarios(usuario, contrasena)){   //usuario existe
-                    if(bd.GetRol_Usuarios(usuario).equals("Paciente")){
-                        Paciente p = bd.GetPaciente_Pacientes(usuario);
-                        request.getSession().setAttribute("paciente", p);
-                        response.sendRedirect("HomePaciente.jsp");
-                    }
-                    if(bd.GetRol_Usuarios(usuario).equals("Admin")){
-                        response.sendRedirect("HomeAdmin.jsp");
-                    }
-                    if(bd.GetRol_Usuarios(usuario).equals("Doctor")){
-                        Doctor d = bd.GetDoctor_Doctores(usuario);
-                        request.getSession().setAttribute("doctor", d);
-                        response.sendRedirect("HomeDoctor.jsp");
-                    }
-                }else{
-                    response.sendRedirect("index.jsp");
+                if(bd.GetRol_Usuarios(usuario).equals("Paciente")){
+                    Paciente p = bd.GetPaciente_Pacientes(usuario);
+                    request.getSession().setAttribute("paciente", p);
+                    response.sendRedirect("HomePaciente.jsp");
+                }
+                if(bd.GetRol_Usuarios(usuario).equals("Admin")){
+                    response.sendRedirect("HomeAdmin.jsp");
+                }
+                if(bd.GetRol_Usuarios(usuario).equals("Doctor")){
+                    Doctor d = bd.GetDoctor_Doctores(usuario);
+                    request.getSession().setAttribute("doctor", d);
+                    response.sendRedirect("HomeDoctor.jsp");
                 }
             }
+            
             if(request.getParameter("opcion").equals("registrarse")){      //Click en registrarse
                 Paciente p = new Paciente();
                 p.setBarrio(request.getParameter("barrio"));
@@ -73,9 +69,10 @@ public class Ingreso extends HttpServlet {
             }
             if(request.getParameter("opcion").equals("olvido_contrasena")){        //Click en olvidó su contraseña            
                 String correo = request.getParameter("correo_olvido");
-                String mensaje ="Buen día. \n\n"
-                        + "Esta es su contraseña: "+bd.GetContra_Usuarios(bd.GetUsuario_Pacientes(correo))+" "
-                        + "recomentamos su uso adecuando.\n\n"
+                String mensaje ="Cordial saludo por parte de todo el equipo Medicine-Plus. \n\n"
+                        + "Nos llego la solicitud de que olvidaste tu contraseña ¡No te preocupes!\n\n"
+                        + "Esta es tu contraseña: "+bd.GetContra_Usuarios(bd.GetUsuario_Pacientes(correo))+" "
+                        + "Te recordamos que es de uso personal, dale el uso adecuado.\n\n"
                         + "Muchas gracias por usar nuestros servicios.";
                 EnviarCorreo(correo, mensaje, "¿Olvidaste tu contraseña?");
                 response.sendRedirect("index.jsp");

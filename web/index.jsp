@@ -15,18 +15,19 @@
     </head>
     <body class="fondo">
         <div class="login-centrado">
-            <form  action="Ingreso" method="post" autocomplete="off">    
-                <div><img class="img-logo" src="FILES/Logo.png"></div>
-                <div id="datos_ingreso">
-                    <div><input class="usuario" type="text" name="usuario" placeholder="Usuario" required></div>
+            <div><img class="img-logo" src="FILES/Logo.png"></div>
+            <div class="error-ingreso" id="error_ingreso"></div>
+            <form  id="datos" method="post" autocomplete="off">    
+                <div class="datos-ingreso" id="datos_ingreso">
+                    <div><input class="usuario" type="text" name="usuario" id="usuario" placeholder="Usuario"></div>
                     <br>
-                    <div><input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+                    <div><input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
                         <button class="boton-ver" onclick="mostrarContrasena()">
                             <img class="img-ver" src="FILES/Ver.png" alt=""/>
                         </button>
                     </div>
                     <br>
-                    <div><input class="boton" type="submit" value="INICIAR SESIÓN"></div>
+                    <div><input class="boton" type="button" onclick="ingresar()" value="INICIAR SESIÓN"></div>
                     <input type="hidden" name="opcion" value="ingreso">
                 </div>
             </form>

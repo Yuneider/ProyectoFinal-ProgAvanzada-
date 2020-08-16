@@ -41,6 +41,20 @@ public class Validaciones extends HttpServlet {
                     out.print("(El usuario ya existe)");
                 }
             }
+            
+            if("existeDni".equals(tipoValidacion)){
+                if(bd.ValidarPaciente_Pacientes(Integer.parseInt(request.getParameter("dni")))){
+                    out.print("(Doc. ya registrado)");
+                }
+            }
+            
+            if("ingresoCorrecto".equals(tipoValidacion)){
+                String usuario = request.getParameter("usuario");
+                String contrasena = request.getParameter("contrasena");
+                if(!bd.ExisteUsuario_Usuarios(usuario, contrasena)){
+                    out.print("Error: usuario y/o contraseña inválido.");
+                }
+            }
         }catch(Exception e){
             System.out.println(e);
         }

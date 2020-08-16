@@ -38,11 +38,11 @@
                 </div>
                 <form id="usuarioRegistrado" method="post" autocomplete="off" >
                     <div class="entrada-info">
-                        <input type="number" name="dni" id= "dni" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="123456789">
+                        <input type="number" name="dni" id= "dni" placeholder="123456789">
                         <div> <input type="text" name="nombre" id= "nombre" placeholder="Daniel Garay"></div>
                         <div> <input type="date" name="fecha_nacimiento" id= "fecha_nacimiento" max="2019-12-31" min="1920-01-01" value="2000-05-26"></div>
                         <div> <input type="text" name="correo" id= "correo" placeholder="daniel.garay@correo.com"></div>    
-                        <div> <input type="number" name="celular" id= "celular" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="3101110000"></div>
+                        <div> <input type="number" name="celular" id= "celular"  placeholder="3101110000"></div>
                         <div> <input type="text" name="direccion" id= "direccion" placeholder="Carrera 5 # 26b - 30"></div>
                         <div> <input type="text" name="barrio" id= "barrio"></div>
                         <div> <input type="text" name="usuario" id= "usuario" placeholder="DGARAY"></div>
