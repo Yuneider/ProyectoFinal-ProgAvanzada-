@@ -18,46 +18,48 @@
 %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <link rel="stylesheet" href="CSS/VerDoctores.css">
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <section class="banner" id="sec">
-      <header>
-        <div class="logo"><img src="FILES/Logo.png"></div>
-        <div id="toggle" onclick="toggle()"></div>
-      </header>
-      <h1>Citas Programadas</h1>
-      <table>
-        <thead>
-          <th>Hospital</th><th>Doctor(nombre)</th><th>Especialidad</th><th>Horario</th><th>Usuario</th><th>Acciones</th>
-        </thead>
-        <%while(rs.next()){%>
-        <tr>
-          <td><% out.print(rs.getString("hospital"));%></td>
-          <td><% out.print(rs.getString("nombre"));%></td>
-          <td><% out.print(rs.getString("especialidad"));%></td>
-          <td>8:00 - 17:00</td>
-          <td><% out.print(rs.getString("usuario"));%></td>
-          <td class="links">
-            <a href="EditarDoctor.jsp">Editar</a>
-            <a href="Ingreso?opcion=eliminarDoctor&usuario=<%= rs.getString("usuario")%>">Eliminar</a>
-          </td>
-        </tr>
-        <% }%>
-        <tr>
-          <td colspan="5" class="links"><a href="AgregarDoctor.jsp">Agregar Doctor</a></td>
-        </tr>
-      </table>
-    </section>
-    <div id="Navegacion">
-      <ul>
-        <li><a href="HomeAdmin.jsp">Inicio</a></li>
-        <li><a href="index.jsp">Cerrar Sesión</a></li>
-      </ul>
-    </div>
-  </body>
-  <script src="JS/Barra.js"></script>
+    <head>
+        <link rel="stylesheet" href="CSS/VerDoctores.css">
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="banner" id="sec">
+            <header>
+                <div class="logo"><img src="FILES/Logo.png"></div>
+                <div id="toggle" onclick="toggle()"></div>
+            </header>
+            <div>
+                <div class="titulo">Doctores registrados</div>
+                <table>
+                    <thead>
+                        <th>Hospital</th><th>Doctor(nombre)</th><th>Especialidad</th><th>Horario</th><th>Usuario</th><th>Acciones</th>
+                    </thead>
+                    <%while(rs.next()){%>
+                    <tr>
+                        <td><% out.print(rs.getString("hospital"));%></td>
+                        <td><% out.print(rs.getString("nombre"));%></td>
+                        <td><% out.print(rs.getString("especialidad"));%></td>
+                        <td>8:00 - 17:00</td>
+                        <td><% out.print(rs.getString("usuario"));%></td>
+                        <td class="links">
+                            <a href="EditarDoctor.jsp">Editar</a>
+                            <a href="Ingreso?opcion=eliminarDoctor&usuario=<%= rs.getString("usuario")%>">Eliminar</a>
+                        </td>
+                    </tr>
+                    <% }%>
+                    <tr>
+                        <td colspan="6" class="links"><a href="AgregarDoctor.jsp">Agregar Doctor</a></td>
+                    </tr>
+                </table>
+            </div>            
+        </div>
+        <div id="Navegacion">
+            <ul>
+                <li><a href="HomeAdmin.jsp">Inicio</a></li>
+                <li><a href="index.jsp">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </body>
+    <script src="JS/Barra.js"></script>
 </html>

@@ -1,6 +1,7 @@
 body{
   background-color: rgb(30,32,33);
   text-align: center;
+  font-family: "Latin Modern Roman 10";
 }
 li{
   margin-bottom: 25px;
@@ -79,7 +80,7 @@ header #toggle:after{
   right: -400px;
   width: 400px;
   height: 100vh;
-  background: #40c3ff;
+  background: rgb(53, 144, 213);
   z-index: 1;
   display: grid;
   place-items: center;
@@ -141,9 +142,59 @@ header #toggle:after{
   place-items: center;
   margin-bottom: 10px;
 }
-h2{
-  color: #fff;
-  text-decoration: none;
+p{
+  text-align: justify;
+  margin-left: 15%; margin-right: 15%;
+  margin-top: 15px; margin-bottom: 20px;
+  font-size: 13pt;
+  color: white;
+  line-height: 30px;
 }
-
-
+select{
+    font-family: "Latin Modern Roman 10";
+    font-size: large;
+    background: rgb(222, 236, 247);
+    color: black;
+    padding: 5px;
+    margin: 15px;
+    width: 350px;
+    border-radius: 5px;
+    text-align-last: center;
+}
+.fecha{
+    text-align-last: center;
+    font-family: "Latin Modern Roman 10";
+    font-size: large;
+    background: rgb(222, 236, 247);
+    color: black;
+    padding: 5px;
+    margin: 15px;
+    width: 350px;
+    border-radius: 5px;  
+}
+.datos-nueva-cita{
+  width: 100%;
+}  
+.titulo{
+  font-size: xx-large;
+  color: rgb(53, 144, 213);
+}
+.punto{
+  font-size: xx-large;
+  color: rgb(53, 144, 213);  
+}
+.hospital, .doctor{
+  font-size: large;
+  margin: 15px;
+  color: rgb(222, 236, 247);
+}
+.boton{
+  width: 320px; height: 45px;
+  background-color: rgb(128, 38, 38);
+  font-family: "Latin Modern Roman 10";
+  font-size: large;
+  margin-top: 15px;
+  border:0; 
+  border-radius: 5px;
+  color: rgb(155, 157, 158);
+}

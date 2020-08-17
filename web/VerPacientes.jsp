@@ -24,36 +24,38 @@
     <title>Perfil_usuario</title>
   </head>
   <body>
-    <section class="banner" id="sec">
-      <header>
-        <div class="logo"><img src="FILES/Logo.png"></div>
-        <div id="toggle" onclick="toggle()"></div>
-      </header>
-      <div class="Titulo">
-        <h1>Pacientes</h1>
-      </div>
-      <table>
-        <thead>
-          <th>DNI</th><th>Nombre</th><th>Edad</th><th>Correo</th><th>Dirección</th><th>Barrio</th><th>Célular</th><th>Usuario</th><th>Acciones</th>
-        </thead>
-        <%while(rs.next()){%>
-        <tr>
-          <td><% out.print(rs.getInt("dni"));%></td>
-          <td><% out.print(rs.getString("nombre"));%></td>
-          <td><% out.print(rs.getInt("edad"));%></td>
-          <td><% out.print(rs.getString("correo"));%></td>
-          <td><% out.print(rs.getString("dir"));%></td>
-          <td><% out.print(rs.getString("barrio"));%></td>
-          <td><% out.print(rs.getString("celular"));%></td>
-          <td><% out.print(rs.getString("usuario"));%></td>
-          <td class="links">
-            <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Editar</a>
-            <a href="Ingreso?opcion=eliminarPaciente&usuario=<%= rs.getString("usuario")%>&dni=<%= rs.getString("dni")%>">Eliminar</a>
-          </td>
-        </tr>
-        <% }%>
-      </table>
-    </section>
+    <div class="banner" id="sec">
+        <header>
+            <div class="logo"><img src="FILES/Logo.png"></div>
+            <div id="toggle" onclick="toggle()"></div>
+        </header>
+        <main>
+            <div class="Titulo">Pacientes</div>
+            <div>
+                <table>
+                    <thead>
+                        <th>DNI</th><th>Nombre</th><th>Edad</th><th>Correo</th><th>Dirección</th><th>Barrio</th><th>Célular</th><th>Usuario</th><th>Acciones</th>
+                    </thead>
+                    <%while(rs.next()){%>
+                    <tr>
+                        <td><% out.print(rs.getInt("dni"));%></td>
+                        <td><% out.print(rs.getString("nombre"));%></td>
+                        <td><% out.print(rs.getInt("edad"));%></td>
+                        <td><% out.print(rs.getString("correo"));%></td>
+                        <td><% out.print(rs.getString("dir"));%></td>
+                        <td><% out.print(rs.getString("barrio"));%></td>
+                        <td><% out.print(rs.getString("celular"));%></td>
+                        <td><% out.print(rs.getString("usuario"));%></td>
+                        <td class="links">
+                            <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Editar</a>
+                            <a href="Ingreso?opcion=eliminarPaciente&usuario=<%= rs.getString("usuario")%>&dni=<%= rs.getString("dni")%>">Eliminar</a>
+                        </td>
+                    </tr>
+                    <% }%>
+                </table>
+            </div>
+        </main>    
+    </div>
     <div id="Navegacion">
       <ul>
         <li><a href="HomeAdmin.jsp">Inicio</a></li>

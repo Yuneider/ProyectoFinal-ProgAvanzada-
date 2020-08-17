@@ -18,43 +18,45 @@
 %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <link rel="stylesheet" href="CSS/CancelarCita.css">
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <section class="banner" id="sec">
-      <header>
-        <div class="logo"><img src="FILES/Logo.png"></div>
-        <div id="toggle" onclick="toggle()"></div>
-      </header>
-      <h1>Citas Programadas</h1>
-      <table>
-        <thead>
-          <th>Hospital</th><th>Doctor</th><th>Fecha</th><th>Horario</th><th>Estado</th><th>Acciones</th>
-        </thead>
-        <%while(rs.next()){%>
-        <tr>
-          <td><% out.print(rs.getString("hospital"));%></td>
-          <td><% out.print(rs.getString("doctor"));%></td>
-          <td><% out.print(rs.getString("fecha"));%></td>
-          <td><% out.print(rs.getInt("hora"));%></td>
-          <td><% out.print(rs.getString("estado"));%></td>
-          <td class="links">
-            <a href="Ingreso?opcion=cancelarCita&id=<%= rs.getInt("id")%>">Cancelar Cita</a>
-          </td>
-        </tr>
-        <% }%>
-      </table>
-    </section>
-    <div id="Navegacion">
-      <ul>
-        <li><a href="homePaciente.jsp">Inicio</a></li>
-        <li><a href="PerfilPaciente.jsp">Ver Perfil</a></li>
-        <li><a href="index.jsp">Cerrar Sesión</a></li>
-      </ul>
-    </div>
-  </body>
-  <script src="JS/Barra.js"></script>
+    <head>
+        <link rel="stylesheet" href="CSS/CancelarCita.css">
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <section class="banner" id="sec">
+            <header>
+                <div class="logo"><img src="FILES/Logo.png"></div>
+                <div id="toggle" onclick="toggle()"></div>
+            </header>
+            <div>
+                <span class="titulo">Citas:</span>
+                <table>
+                    <thead>
+                        <th>Hospital</th><th>Doctor</th><th>Fecha</th><th>Horario</th><th>Estado</th><th>Acciones</th>
+                    </thead>
+                    <%while(rs.next()){%>
+                    <tr>
+                        <td><% out.print(rs.getString("hospital"));%></td>
+                        <td><% out.print(rs.getString("doctor"));%></td>
+                        <td><% out.print(rs.getString("fecha"));%></td>
+                        <td><% out.print(rs.getInt("hora"));%></td>
+                        <td><% out.print(rs.getString("estado"));%></td>
+                        <td class="links">
+                            <a href="Ingreso?opcion=cancelarCita&id=<%= rs.getInt("id")%>">Cancelar Cita</a>
+                        </td>
+                    </tr>
+                    <% }%>
+                </table>
+            </div>    
+        </section>
+        <div id="Navegacion">
+            <ul>
+                <li><a href="homePaciente.jsp">Inicio</a></li>
+                <li><a href="PerfilPaciente.jsp">Ver Perfil</a></li>
+                <li><a href="index.jsp">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </body>
+    <script src="JS/Barra.js"></script>
 </html>

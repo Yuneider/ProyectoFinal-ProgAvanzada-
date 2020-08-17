@@ -55,6 +55,10 @@ public class Validaciones extends HttpServlet {
                     out.print("Error: usuario y/o contraseña inválido.");
                 }
             }
+            
+            if("hospitalLocalidad".equals(tipoValidacion)){
+                out.print(request.getParameter("localidad"));
+            }
         }catch(Exception e){
             System.out.println(e);
         }

@@ -79,7 +79,7 @@ header #toggle:after{
   right: -400px;
   width: 400px;
   height: 100vh;
-  background: #40c3ff;
+  background: rgb(53, 144, 213);
   z-index: 1;
   display: grid;
   place-items: center;

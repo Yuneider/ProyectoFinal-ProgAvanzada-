@@ -57,7 +57,8 @@ public class Ingreso extends HttpServlet {
                 p.setBarrio(request.getParameter("barrio"));
                 p.setCelular(request.getParameter("celular"));
                 p.setCorreo(request.getParameter("correo"));
-                p.setDir(request.getParameter("direccion"));
+                p.setDir(request.getParameter("direccion"));                
+                System.out.println(request.getParameter("dni"));
                 p.setDni(Integer.parseInt(request.getParameter("dni")));
                 p.setUsuario(request.getParameter("usuario")); 
                 p.setEdad(CalcularEdad(request.getParameter("fecha_nacimiento")));
