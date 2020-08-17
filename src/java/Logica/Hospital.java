@@ -4,7 +4,7 @@ public class Hospital {
     
     private String nombre;
     private String dir;
-    private String barrio;
+    private String localidad;
 
     public String getNombre() {
         return nombre;
@@ -22,12 +22,12 @@ public class Hospital {
         this.dir = dir;
     }
 
-    public String getBarrio() {
-        return barrio;
+    public String getLocalidad() {
+        return localidad;
     }
 
-    public void setBarrio(String barrio) {
-        this.barrio = barrio;
+    public void setLocalidad(String barrio) {
+        this.localidad = localidad;
     }
     
 }

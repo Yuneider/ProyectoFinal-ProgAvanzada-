@@ -12,6 +12,15 @@ public class Paciente {
     private String celular;
     private String nombre;
     private String contrasena;
+    private String comentario;
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
 
     public String getContrasena() {
         return contrasena;

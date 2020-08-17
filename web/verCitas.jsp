@@ -30,10 +30,10 @@
                 <div id="toggle" onclick="toggle()"></div>
             </header>
             <div>
-                <span class="titulo">Citas:</span>
+                <span class="titulo">Citas</span>
                 <table>
                     <thead>
-                        <th>Hospital</th><th>Doctor</th><th>Fecha</th><th>Horario</th><th>Estado</th><th>Acciones</th>
+                        <th>Hospital</th><th>Doctor</th><th>Fecha</th><th>Horario</th><th>Estado</th><th>Comentario</th><th>Acciones</th>
                     </thead>
                     <%while(rs.next()){%>
                     <tr>
@@ -42,6 +42,7 @@
                         <td><% out.print(rs.getString("fecha"));%></td>
                         <td><% out.print(rs.getInt("hora"));%></td>
                         <td><% out.print(rs.getString("estado"));%></td>
+                        <td><% out.print(rs.getString("comentario"));%></td>
                         <td class="links">
                             <a href="Ingreso?opcion=cancelarCita&id=<%= rs.getInt("id")%>">Cancelar Cita</a>
                         </td>

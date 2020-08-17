@@ -134,7 +134,7 @@ public class BaseDeDatos {
              if(ValidarPaciente_Pacientes(p.getDni())||ValidarUsuario_Pacientes(p.getUsuario())){
                  System.out.println("El paciente ya está registrado");
              }else{
-                 PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `pacientes` (dni,usuario,nombre,edad,correo,dir,barrio,celular) VALUES(?,?,?,?,?,?,?,?);");
+                 PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `pacientes` (dni,usuario,nombre,edad,correo,dir,barrio,celular,comentario) VALUES(?,?,?,?,?,?,?,?,?);");
                  ps.setInt(1, p.getDni());
                  ps.setString(2, p.getUsuario());
                  ps.setString(3, p.getNombre());
@@ -143,6 +143,7 @@ public class BaseDeDatos {
                  ps.setString(6, p.getDir());
                  ps.setString(7, p.getBarrio());
                  ps.setString(8, p.getCelular());
+                 ps.setString(9, p.getComentario());
                  ps.executeUpdate();
                  InsertarUsuario_Usuarios(p.getUsuario(),p.getContrasena(),"Paciente");
              }
@@ -193,6 +194,7 @@ public class BaseDeDatos {
                 p.setBarrio(rs.getString("barrio"));
                 p.setDir(rs.getString("dir"));
                 p.setUsuario(rs.getString("usuario"));
+                p.setComentario(rs.getString("comentario"));
                 return p;
             }else{
                 return null;
@@ -328,10 +330,10 @@ public class BaseDeDatos {
     public void InsertarHospital_Hospitales(Hospital h){
         try {
             if(!ValidarNombreHospital_Hospitales(h.getNombre()) && !ValidarDirHospital_Hospitales(h.getDir())){
-                PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `hospitales` (nombre,dir,barrio) VALUES(?,?,?);");
+                PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `hospitales` (nombre,dir,localidad) VALUES(?,?,?);");
                 ps.setString(1, h.getNombre());
                 ps.setString(2, h.getDir());
-                ps.setString(3, h.getBarrio());
+                ps.setString(3, h.getLocalidad());
                 ps.executeUpdate();
             }else{
                 System.out.println("El hospital ya existe");

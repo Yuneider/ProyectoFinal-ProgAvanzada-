@@ -43,7 +43,6 @@
                         <td>8:00 - 17:00</td>
                         <td><% out.print(rs.getString("usuario"));%></td>
                         <td class="links">
-                            <a href="EditarDoctor.jsp">Editar</a>
                             <a href="Ingreso?opcion=eliminarDoctor&usuario=<%= rs.getString("usuario")%>">Eliminar</a>
                         </td>
                     </tr>
