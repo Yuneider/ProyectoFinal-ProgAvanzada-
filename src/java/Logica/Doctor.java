@@ -5,7 +5,16 @@ public class Doctor {
     private String hospital;
     private String nombre;
     private String especialidad;
+    private String usuario;
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    
     public String getHospital() {
         return hospital;
     }

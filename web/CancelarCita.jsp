@@ -4,7 +4,18 @@
     Author     : Familia Garay
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="Datos.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    Conexion con = new Conexion();
+    Connection c = con.Conexion();
+    String sqr = "select * from citas";
+    PreparedStatement ps = c.prepareStatement(sqr);
+    ResultSet rs=ps.executeQuery();
+%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -21,18 +32,20 @@
       <h1>Citas Programadas</h1>
       <table>
         <thead>
-          <th>Hospital</th><th>Doctor</th><th>Fecha</th><th>Horario</th><th>Acciones</th>
+          <th>Hospital</th><th>Doctor</th><th>Fecha</th><th>Horario</th><th>Estado</th><th>Acciones</th>
         </thead>
+        <%while(rs.next()){%>
         <tr>
-          <td>AQUI VA EL HOSPITAL</td>
-          <td>AQUI VA EL DOCTOR</td>
-          <td>AQUI VA LA FECHA</td>
-          <td>AQUI VA EL HORARIO</td>
+          <td><% out.print(rs.getString("hospital"));%></td>
+          <td><% out.print(rs.getString("doctor"));%></td>
+          <td><% out.print(rs.getString("fecha"));%></td>
+          <td><% out.print(rs.getInt("hora"));%></td>
+          <td><% out.print(rs.getString("estado"));%></td>
           <td class="links">
-            <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Cancelar Cita</a>
-            <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Reprogramar Cita</a>
+            <a href="Ingreso?opcion=cancelarCita&id=<%= rs.getInt("id")%>">Cancelar Cita</a>
           </td>
         </tr>
+        <% }%>
       </table>
     </section>
     <div id="Navegacion">

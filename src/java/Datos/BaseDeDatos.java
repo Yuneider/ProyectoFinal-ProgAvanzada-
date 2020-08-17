@@ -225,6 +225,7 @@ public class BaseDeDatos {
                 d.setNombre(rs.getString("nombre"));
                 d.setHospital(rs.getString("hospital"));
                 d.setEspecialidad(rs.getString("especialidad"));
+                d.setUsuario(rs.getString("usuario"));
                 return d;
             }else{
                 return null;
@@ -238,12 +239,13 @@ public class BaseDeDatos {
     public void InsertarDoctor_Doctores(Doctor d){
         try {
             if(!ValidarNombreDoctor_Doctores(d.getNombre())){
-                PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `doctores` (hospital,nombre,especialidad) VALUES(?,?,?);");
+                PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `doctores` (hospital,nombre,especialidad,usuario) VALUES(?,?,?,?);");
                 ps.setString(1, d.getHospital());
                 ps.setString(2, d.getNombre());
                 ps.setString(3, d.getEspecialidad());
+                ps.setString(4, d.getUsuario());
                 ps.executeUpdate();
-                InsertarUsuario_Usuarios (d.getNombre(),d.getNombre(),"Doctor");
+                InsertarUsuario_Usuarios (d.getUsuario(),d.getNombre(),"Doctor");
             }else{
                 System.out.println("Nombre repetido");
             }
