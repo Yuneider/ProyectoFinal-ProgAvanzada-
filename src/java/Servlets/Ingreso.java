@@ -73,7 +73,7 @@ public class Ingreso extends HttpServlet {
                         + "Esta es tu contraseña: "+bd.GetContra_Usuarios(bd.GetUsuario_Pacientes(correo))+" "
                         + "Te recordamos que es de uso personal, dale el uso adecuado.\n\n"
                         + "Muchas gracias por usar nuestros servicios.";
-                EnviarCorreo(correo, mensaje, "¿Olvidaste tu contraseña?");
+                bd.EnviarCorreo(correo, mensaje, "¿Olvidaste tu contraseña?");
                 response.sendRedirect("index.jsp");
             }
             if(request.getParameter("opcion").equals("eliminarDoctor")){   //click en Eliminar Doctor
@@ -92,30 +92,6 @@ public class Ingreso extends HttpServlet {
                 bd.CancelarCita_Citas(Integer.parseInt(request.getParameter("id")));
                 response.sendRedirect("CancelarCita.jsp");
             }
-        }
-    }
-    
-    private void EnviarCorreo(String correo,String mensaje, String asunto){
-        Properties propiedad = new Properties();
-        propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
-        propiedad.setProperty("mail.smtp.starttls.enable", "true");
-        propiedad.setProperty("mail.smtp.port", "587");
-        propiedad.setProperty("mail.smtp.auth", "true");
-        Session sesion = Session.getDefaultInstance(propiedad);
-        String correoEnvia = "cgpmedicineplus@gmail.com";
-        String contrasena = "CGPMedicine";
-        MimeMessage mail = new MimeMessage(sesion);
-        try {
-            mail.setFrom(new InternetAddress(correoEnvia));
-            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(correo));
-            mail.setSubject(asunto);
-            mail.setText(mensaje);
-            Transport transporte = sesion.getTransport("smtp");
-            transporte.connect(correoEnvia,contrasena);
-            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
-            transporte.close();
-        } catch (MessagingException ex) {
-            System.out.println(ex);
         }
     }
     

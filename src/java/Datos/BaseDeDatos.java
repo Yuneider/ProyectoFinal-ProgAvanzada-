@@ -4,8 +4,15 @@ import Logica.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class BaseDeDatos {
 
@@ -232,6 +239,24 @@ public class BaseDeDatos {
         }
     }
     
+    public String GetNombreDoctor_Doctores(String hospital,String especialidad){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Select nombre FROM `doctores` WHERE hospital=? AND especialidad=?;");
+            ps.setString(1, hospital);
+            ps.setString(2, especialidad);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getString("nombre");
+            }else{
+                return null;
+            }
+         } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println("fallo");
+            return null;
+        }
+    }
+    
     public void InsertarDoctor_Doctores(Doctor d){
         try {
             if(!ValidarNombreDoctor_Doctores(d.getNombre())){
@@ -275,6 +300,21 @@ public class BaseDeDatos {
             System.out.println(e);
         }
     }
+    
+    public boolean ValidarCitaExiste_Citas(String hospital, String doctor, String fecha, int hora){
+        try{
+            PreparedStatement ps = con.Conexion().prepareStatement("SELECT id FROM `citas` WHERE hospital=? AND doctor=? AND fecha=? AND hora=? AND estado='Programada';");
+            ps.setString(1, hospital);
+            ps.setString(2, doctor);
+            ps.setString(3, fecha);
+            ps.setInt(4, hora);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }catch(SQLException ex) {
+            Logger.getLogger(BaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    } 
     
     public void CancelarCita_Citas(int id){ 
         try {
@@ -322,6 +362,23 @@ public class BaseDeDatos {
         }
     }
     
+    public String GetNombreHospital_Hospitales(String localidad){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Select nombre FROM `hospitales` WHERE localidad=?;");
+            ps.setString(1, localidad);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getString("nombre");
+            }else{
+                return null;
+            }
+         } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println("fallo");
+            return null;
+        }
+    }
+    
     public void InsertarHospital_Hospitales(Hospital h){
         try {
             if(!ValidarNombreHospital_Hospitales(h.getNombre()) && !ValidarDirHospital_Hospitales(h.getDir())){
@@ -354,4 +411,28 @@ public class BaseDeDatos {
         }
     }
  
+    public void EnviarCorreo(String correo,String mensaje, String asunto){
+        Properties propiedad = new Properties();
+        propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
+        propiedad.setProperty("mail.smtp.starttls.enable", "true");
+        propiedad.setProperty("mail.smtp.port", "587");
+        propiedad.setProperty("mail.smtp.auth", "true");
+        Session sesion = Session.getDefaultInstance(propiedad);
+        String correoEnvia = "cgpmedicineplus@gmail.com";
+        String contrasena = "CGPMedicine";
+        MimeMessage mail = new MimeMessage(sesion);
+        try {
+            mail.setFrom(new InternetAddress(correoEnvia));
+            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(correo));
+            mail.setSubject(asunto);
+            mail.setText(mensaje);
+            Transport transporte = sesion.getTransport("smtp");
+            transporte.connect(correoEnvia,contrasena);
+            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
+            transporte.close();
+        } catch (MessagingException ex) {
+            System.out.println(ex);
+        }
+    }
+    
 }
