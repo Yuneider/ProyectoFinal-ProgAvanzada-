@@ -316,10 +316,10 @@ public class BaseDeDatos {
         }
     } 
     
-    public void CancelarCita_Citas(int id){ 
+    public void ModificarEstadoCita_Citas(int id,String estado){ 
         try {
             PreparedStatement ps = con.Conexion().prepareStatement("UPDATE citas SET estado=? WHERE id=?;"); 
-            ps.setString(1, "Cancelada");
+            ps.setString(1, estado);
             ps.setInt(2, id);
             ps.executeUpdate();
         } catch (SQLException ex) {

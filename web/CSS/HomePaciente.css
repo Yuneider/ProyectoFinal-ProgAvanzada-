@@ -198,3 +198,17 @@ select{
   border-radius: 5px;
   color: rgb(155, 157, 158);
 }
+.ingreso{
+  font-family: "Latin Modern Roman 10";
+  background-color: #DEECF7;  
+  color: black;
+  font-size: large;
+  margin: 15px;
+  height: 45px;
+  width: 350px;
+  border-radius: 5px;
+  text-align-last: center;
+}
+#nombre{
+    margin-top: 40px;
+}

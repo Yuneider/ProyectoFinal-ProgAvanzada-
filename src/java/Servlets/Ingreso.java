@@ -89,7 +89,7 @@ public class Ingreso extends HttpServlet {
                 response.sendRedirect("VerHospitales.jsp");
             }
             if(request.getParameter("opcion").equals("cancelarCita")){ //click en Cancelar Cita
-                bd.CancelarCita_Citas(Integer.parseInt(request.getParameter("id")));
+                bd.ModificarEstadoCita_Citas(Integer.parseInt(request.getParameter("id")),"Cancelar");
                 response.sendRedirect("CancelarCita.jsp");
             }
         }
