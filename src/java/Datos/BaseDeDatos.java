@@ -101,10 +101,10 @@ public class BaseDeDatos {
         }
     }
     
-    public boolean ValidarPaciente_Pacientes(int dni){
+    public boolean ValidarPaciente_Pacientes(String dni){
         try{
             PreparedStatement ps = con.Conexion().prepareStatement("SELECT dni FROM `pacientes` WHERE dni=?;");
-            ps.setString(1, String.valueOf(dni));
+            ps.setString(1, dni);
             ResultSet rs = ps.executeQuery();
             return rs.next();
         }catch(SQLException ex) {
@@ -131,31 +131,26 @@ public class BaseDeDatos {
     
     public void InsertarPaciente_Pacientes(Paciente p){
          try {
-             if(ValidarPaciente_Pacientes(p.getDni())||ValidarUsuario_Pacientes(p.getUsuario())){
-                 System.out.println("El paciente ya está registrado");
-             }else{
-                 PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `pacientes` (dni,usuario,nombre,edad,correo,dir,barrio,celular,comentario) VALUES(?,?,?,?,?,?,?,?,?);");
-                 ps.setInt(1, p.getDni());
-                 ps.setString(2, p.getUsuario());
-                 ps.setString(3, p.getNombre());
-                 ps.setInt(4, p.getEdad());
-                 ps.setString(5, p.getCorreo());
-                 ps.setString(6, p.getDir());
-                 ps.setString(7, p.getBarrio());
-                 ps.setString(8, p.getCelular());
-                 ps.setString(9, p.getComentario());
-                 ps.executeUpdate();
-                 InsertarUsuario_Usuarios(p.getUsuario(),p.getContrasena(),"Paciente");
-             }
+            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `pacientes` (dni,usuario,nombre,edad,correo,dir,barrio,celular) VALUES(?,?,?,?,?,?,?,?);");
+            ps.setString(1, p.getDni());
+            ps.setString(2, p.getUsuario());
+            ps.setString(3, p.getNombre());
+            ps.setInt(4, p.getEdad());
+            ps.setString(5, p.getCorreo());
+            ps.setString(6, p.getDir());
+            ps.setString(7, p.getBarrio());
+            ps.setString(8, p.getCelular());
+            ps.executeUpdate();
+            InsertarUsuario_Usuarios(p.getUsuario(),p.getContrasena(),"Paciente"); 
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
     
-    public void EliminarPaciente_Pacientes(int dni,String usuario){
+    public void EliminarPaciente_Pacientes(String dni,String usuario){
         try {
             PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `pacientes` WHERE dni=?;");
-            ps.setInt(1, dni);
+            ps.setString(1, dni);
             ps.executeUpdate();
             EliminarUsuario_Usuarios(usuario);
         } catch (SQLException ex) {
@@ -186,7 +181,7 @@ public class BaseDeDatos {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 Paciente p = new Paciente();
-                p.setDni(rs.getInt("dni"));
+                p.setDni(rs.getString("dni"));
                 p.setNombre(rs.getString("nombre"));
                 p.setEdad(rs.getInt("edad"));
                 p.setCorreo(rs.getString("correo"));
@@ -194,7 +189,6 @@ public class BaseDeDatos {
                 p.setBarrio(rs.getString("barrio"));
                 p.setDir(rs.getString("dir"));
                 p.setUsuario(rs.getString("usuario"));
-                p.setComentario(rs.getString("comentario"));
                 return p;
             }else{
                 return null;
@@ -268,13 +262,14 @@ public class BaseDeDatos {
     
     public void InsertarCita_Citas(Cita c){
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `citas` (hospital,fecha,hora,doctor,paciente,estado) VALUES(?,?,?,?,?,?);");
+            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `citas` (hospital,fecha,hora,doctor,paciente,estado,comentario) VALUES(?,?,?,?,?,?,?);");
             ps.setString(1, c.getHospital());
             ps.setString(2, c.getFecha());
             ps.setInt(3, c.getHora());
             ps.setString(4, c.getDoctor());
             ps.setString(5, c.getPaciente());
             ps.setString(6, "Programada");
+            ps.setString(7, c.getComentario());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);

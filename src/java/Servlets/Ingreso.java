@@ -57,9 +57,8 @@ public class Ingreso extends HttpServlet {
                 p.setBarrio(request.getParameter("barrio"));
                 p.setCelular(request.getParameter("celular"));
                 p.setCorreo(request.getParameter("correo"));
-                p.setDir(request.getParameter("direccion"));                
-                System.out.println(request.getParameter("dni"));
-                p.setDni(Integer.parseInt(request.getParameter("dni")));
+                p.setDir(request.getParameter("direccion"));              
+                p.setDni(request.getParameter("dni"));
                 p.setUsuario(request.getParameter("usuario")); 
                 p.setEdad(CalcularEdad(request.getParameter("fecha_nacimiento")));
                 p.setNombre(request.getParameter("nombre"));
@@ -82,7 +81,7 @@ public class Ingreso extends HttpServlet {
                 response.sendRedirect("VerDoctores.jsp");
             }
             if(request.getParameter("opcion").equals("eliminarPaciente")){   //click en Eliminar Paciente
-                bd.EliminarPaciente_Pacientes(Integer.parseInt(request.getParameter("dni")),request.getParameter("usuario"));
+                bd.EliminarPaciente_Pacientes(request.getParameter("dni"),request.getParameter("usuario"));
                 response.sendRedirect("VerPacientes.jsp");
             }
             if(request.getParameter("opcion").equals("eliminarHospital")){   //click en Eliminar Hospital

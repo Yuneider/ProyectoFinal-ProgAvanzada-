@@ -26,7 +26,7 @@
                     <span class="punto">•</span>Los unicos bloques horarios que se muestran son los disponibles.
                 </p>
                 <div class="item">
-                    <select id="localidad" name="localidad" onchange="habilitar(this.value);" required>
+                    <select id="localidad" name="localidad" onchange="habilitarHospital(this.value);" required>
                         <option value="0" disabled selected >Seleccione una localidad</option>
                         <option value="ANTONIO NARIÑO">ANTONIO NARIÑO</option>
                         <option value="BARRIOS UNIDOS">BARRIOS UNIDOS</option>
@@ -51,7 +51,10 @@
                     <span id="hospital" name="hospital" class="hospital">Hospital: No definido</span>
                 </div>
                 <div class="item">
-                    <select id="especialidad" name="especialidad" disabled>
+                    <input class="fecha" type="date" name="fecha" id="fecha" disabled>
+                </div>
+                <div class="item">
+                    <select id="especialidad" name="especialidad" onchange="habilitarDoctor(this.value);" disabled>
                         <option disabled selected>Seleccione una especialidad</option>
                         <option>Medicina General</option>
                         <option>Optometria</option>
@@ -62,10 +65,7 @@
                     <span id="doctor" name="doctor" class="doctor">Doctor: No definido</span>
                 </div>
                 <div class="item">
-                    <input class="fecha" type="date" name="fecha" id="fecha">
-                </div>
-                <div class="item">
-                    <select id="hora" name="hora" required>
+                    <select id="hora" name="hora" disabled>
                         <option disabled selected>Seleccione una hora</option>
                         <option>08 A.M.</option>
                         <option>09 A.M.</option>
@@ -79,7 +79,7 @@
                         <option>05 P.M.</option>
                     </select>
                 </div>
-                <input type="button" class="boton" value="Programar Cita">
+                <input type="button" class="boton" onclick="ValidarFechas()" value="Programar Cita">
             </div>    
         </section>
         <div id="Navegacion">

@@ -8,11 +8,13 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Datos.Conexion"%>
+<%@page import="Logica.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% 
     Conexion con = new Conexion();
     Connection c = con.Conexion();
-    String sqr = "select * from citas";
+    String usuario = ((Paciente)session.getAttribute("paciente")).getUsuario();
+    String sqr = "select * from citas where paciente='"+usuario+"';";
     PreparedStatement ps = c.prepareStatement(sqr);
     ResultSet rs=ps.executeQuery();
 %>

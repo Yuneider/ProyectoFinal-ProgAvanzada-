@@ -38,7 +38,7 @@
                     </thead>
                     <%while(rs.next()){%>
                     <tr>
-                        <td><% out.print(rs.getInt("dni"));%></td>
+                        <td><% out.print(rs.getString("dni"));%></td>
                         <td><% out.print(rs.getString("nombre"));%></td>
                         <td><% out.print(rs.getInt("edad"));%></td>
                         <td><% out.print(rs.getString("correo"));%></td>

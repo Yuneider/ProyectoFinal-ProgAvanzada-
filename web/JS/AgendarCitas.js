@@ -1,7 +1,7 @@
 //Inicializacion de fechas 
 establecerFechas();
 
-function habilitar(value){
+function habilitarHospital(value){
     if(value=="0"){
         document.getElementById("hospital").disabled=true;
     }else{
@@ -11,6 +11,23 @@ function habilitar(value){
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("hospital").innerHTML = "Hospital: "+this.responseText;  
                 document.getElementById("especialidad").disabled=false;
+                document.getElementById("fecha").disabled=false;
+            }
+        };
+        xhttp.open("POST", url, true);
+        xhttp.send();
+    }
+}
+function habilitarDoctor(value){
+    if(value=="0"){
+        document.getElementById("hora").disabled=true;
+    }else{
+        const url = "Validaciones?tipoValidacion=doctorEspecialidad&especialidad="+document.getElementById("especialidad").value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("doctor").innerHTML = "Doctor: "+this.responseText;  
+                document.getElementById("hora").disabled=false;
             }
         };
         xhttp.open("POST", url, true);
@@ -60,4 +77,33 @@ function establecerFechas(){
     document.getElementById("fecha").max = max;
     
 }
+function ValidarFechas(){
+    //Comprobamos que tenga formato correcto
+    var fecha_aux = document.getElementById("fecha").value.split("-");
+    var Fecha1 = new Date(parseInt(fecha_aux[0]),parseInt(fecha_aux[1])-1,parseInt(fecha_aux[2]));
 
+    if (isNaN(Fecha1)){
+        alert("Fecha introducida no existe");
+    }else{
+        fecha_aux = document.getElementById("fecha").max.split("-");
+        var max = new Date(parseInt(fecha_aux[0]),parseInt(fecha_aux[1])-1,parseInt(fecha_aux[2]));
+        fecha_aux = document.getElementById("fecha").min.split("-");
+        var min = new Date(parseInt(fecha_aux[0]),parseInt(fecha_aux[1]-1),parseInt(fecha_aux[2]));
+        if(Fecha1.getMonth()==min.getMonth()){
+            if(Fecha1.getDate()>=min.getDate()){
+                alert("Fecha correcta");
+            }else{
+                alert("Fecha introducida fuera de el rango autorizado");
+            }
+        }else if(Fecha1.getMonth()==max.getMonth()){
+            if(Fecha1.getDate()<=max.getDate()){
+                alert("Fecha correcta");
+            }
+            else{
+                alert("Fecha introducida fuera de el rango autorizado");
+            }
+        }else{
+            alert("Fecha introducida fuera de el rango autorizado");
+        }
+    }
+}

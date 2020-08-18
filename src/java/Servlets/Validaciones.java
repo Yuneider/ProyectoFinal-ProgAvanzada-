@@ -43,7 +43,7 @@ public class Validaciones extends HttpServlet {
             }
             
             if("existeDni".equals(tipoValidacion)){
-                if(bd.ValidarPaciente_Pacientes(Integer.parseInt(request.getParameter("dni")))){
+                if(bd.ValidarPaciente_Pacientes(request.getParameter("dni"))){
                     out.print("(Doc. ya registrado)");
                 }
             }
@@ -58,6 +58,9 @@ public class Validaciones extends HttpServlet {
             
             if("hospitalLocalidad".equals(tipoValidacion)){
                 out.print(request.getParameter("localidad"));
+            }
+            if("doctorEspecialidad".equals(tipoValidacion)){
+                out.print(request.getParameter("especialidad"));
             }
         }catch(Exception e){
             System.out.println(e);

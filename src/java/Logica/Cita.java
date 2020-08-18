@@ -9,7 +9,8 @@ public class Cita {
     private String doctor;
     private String paciente;
     private String estado;
-
+    private String comentario;
+    
     public int getId() {
         return id;
     }
@@ -18,6 +19,14 @@ public class Cita {
         this.id = id;
     }
 
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+    
     public String getHospital() {
         return hospital;
     }

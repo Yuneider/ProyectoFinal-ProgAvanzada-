@@ -36,8 +36,10 @@
             <form action="Ingreso" method="get" autocomplete="off">
                 <div id="olvido_contrasena" style="display: none;">
                     <br>
-                    <p>Para recuperar su contraseña se enviara un codigo de verificacion al correo correspondiente a su cuenta
-                        , digite por favor el correo electronico con el que se encuentra registrado.</p>
+                    <p>Para recuperar su contraseña se enviara un email al correo electronico correspondiente a su cuenta
+                        , digite por favor el correo con el que se encuentra registrado.<br><br>
+                        Al dar click en "ENVIAR" revise la bandeja de entrada de su correo.
+                    </p>
                     <div><input type="text" name="correo_olvido" placeholder="Correo electrónico" required></div>
                     <br>
                     <div><input class="boton" type="submit" onclick="Cambiar()" value="ENVIAR"></div>

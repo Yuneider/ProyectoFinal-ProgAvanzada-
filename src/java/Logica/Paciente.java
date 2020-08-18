@@ -3,7 +3,7 @@ package Logica;
 public class Paciente {
     
     //ATRIBUTOS
-    private int dni;
+    private String dni;
     private String usuario;
     private int edad;
     private String correo;
@@ -12,15 +12,6 @@ public class Paciente {
     private String celular;
     private String nombre;
     private String contrasena;
-    private String comentario;
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
 
     public String getContrasena() {
         return contrasena;
@@ -38,11 +29,11 @@ public class Paciente {
         this.nombre = nombre;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni=dni;
     }
 

@@ -4,85 +4,78 @@
  * and open the template in the editor.
  */
 function validarAjax() {
-    var validaciones=0;
-    
     //Campo documento
-    if(document.getElementById("dni").value == ""){
-        document.getElementById("valDocumento").innerHTML = "(*)";
-    }else{
-        
+    if(!document.getElementById("dni").value == ""){
         const url = "Validaciones?tipoValidacion=existeDni&dni="+ document.getElementById("dni").value;
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("valDocumento").innerHTML = this.responseText;
                 if(this.responseText == ""){
-                    validaciones=validaciones+1;
+                    document.getElementById("valDocumento").innerHTML = "(*)";
+                    ValidarCampos();
                 }        
             }
         };
         xhttp.open("POST", url, true);
         xhttp.send();
+    }else{
+        document.getElementById("valDocumento").innerHTML = "(*)";
+        document.getElementById("campos_obligatorios").innerHTML = "(*) Faltan campos obligatorios";
+    }
+}
+
+function ValidarCampos(){    
+    var validaciones=0;
+    //Campo nombre
+    if(!document.getElementById("nombre").value == ""){
+        validaciones=validaciones+1;
     }
     
-    //Campo nombre
-    if(document.getElementById("nombre").value == ""){
-        document.getElementById("valNombre").innerHTML = "(*)";
-    }else{
-        document.getElementById("valNombre").innerHTML = "";
+    //Validacion fecha de nacimiento
+    var fechaVal = CompararFechas();
+    if(fechaVal==true){
         validaciones=validaciones+1;
     }
     
     //Campo correo
-    if(document.getElementById("correo").value == ""){
-        document.getElementById("valCorreo").innerHTML = "(*)";
-    }else{
-        document.getElementById("valCorreo").innerHTML = "";
+    if(!document.getElementById("correo").value == ""){
         validaciones=validaciones+1;
     }
     
     //Campo celular
-    if(document.getElementById("celular").value == ""){
-        document.getElementById("valCelular").innerHTML = "(*)";
+    var celular = document.getElementById("celular").value;
+    if(celular.length<10){
+        document.getElementById("valCelular").innerHTML = "(Numero imcompleto)";
     }else{
-        document.getElementById("valCelular").innerHTML = "";
+        document.getElementById("valCelular").innerHTML = "(*)";
         validaciones=validaciones+1;
     }
     
     //Campo direccion
-    if(document.getElementById("direccion").value == ""){
-        document.getElementById("valDireccion").innerHTML = "(*)";
-    }else{
-        document.getElementById("valDireccion").innerHTML = "";
+    if(!document.getElementById("direccion").value == ""){
         validaciones=validaciones+1;
     }
     
     //Campo contraseña
-    if(document.getElementById("contra").value == ""){
-        document.getElementById("valContrasena").innerHTML = "(*)";
-    }else{
-        document.getElementById("valContrasena").innerHTML = "";
+    if(!document.getElementById("contra").value == ""){
         validaciones=validaciones+1;
     }
     
     //Campo confirmacion contraseña
-    if(document.getElementById("contra_confirmacion").value == ""){
-        document.getElementById("valConfirmacion").innerHTML = "(*)";
-    }else{
-        document.getElementById("valConfirmacion").innerHTML = "";
+    if(!document.getElementById("contra_confirmacion").value == ""){
         validaciones=validaciones+1;
     }
     
     //Campo usuario
-    if(document.getElementById("usuario").value == ""){
-        document.getElementById("valUsuario").innerHTML = "(*)";
-    }else{
+    if(!document.getElementById("usuario").value == ""){
         const url = "Validaciones?tipoValidacion=existeUsuario&usuario="+ document.getElementById("usuario").value;
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("valUsuario").innerHTML = this.responseText;
                 if(this.responseText == ""){
+                    document.getElementById("valUsuario").innerHTML = "(*)";
                     if(document.getElementById("contra").value != document.getElementById("contra_confirmacion").value){
                         alert("Las contraseñas son diferentes");
                     }else{  
@@ -96,9 +89,30 @@ function validarAjax() {
         };
         xhttp.open("POST", url, true);
         xhttp.send();        
+    }else{
+        document.getElementById("valUsuario").innerHTML = "(*)";
+        document.getElementById("campos_obligatorios").innerHTML = "(*) Faltan campos obligatorios";
     }
-    if(validaciones!=7){
-        document.getElementById("campos_obligatorios").innerHTML = "(*) Campos obligatorios";
+}
+
+function CompararFechas(){
+    //Comprobamos que tenga formato correcto
+    var fecha_aux = document.getElementById("fecha_nacimiento").value.split("-");
+    var Fecha1 = new Date(parseInt(fecha_aux[2]),parseInt(fecha_aux[1]-1),parseInt(fecha_aux[0]));
+
+    //Comprobamos si existe la fecha
+    if (isNaN(Fecha1)){
+        alert("Fecha introducida no existe");
+        return false;
+    }
+    else{
+        var fechaActual = new Date();
+        if (fechaActual.getFullYear()-Fecha1.getFullYear()>17 && fechaActual.getFullYear()-Fecha1.getFullYear()<100){
+            return true;
+        }else{
+            alert("Fecha fuera de rango");
+            return false;
+        }
     }
 }
 
