@@ -154,12 +154,13 @@ public class BaseDeDatos {
         }
     }
     
-    public void EliminarPaciente_Pacientes(String dni,String usuario){
+    public void EliminarPaciente_Pacientes(String dni,String usuario, String nombre){
         try {
             PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `pacientes` WHERE dni=?;");
             ps.setString(1, dni);
             ps.executeUpdate();
             EliminarUsuario_Usuarios(usuario);
+            EliminarCitasporPaciente_Citas(nombre);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -293,7 +294,7 @@ public class BaseDeDatos {
             ps.setInt(3, c.getHora());
             ps.setString(4, c.getDoctor());
             ps.setString(5, c.getPaciente());
-            ps.setString(6, "Programada");
+            ps.setInt(6, c.getEstado());
             ps.setString(7, c.getComentario());
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -301,25 +302,10 @@ public class BaseDeDatos {
         }
     }
     
-    public boolean ValidarCitaExiste_Citas(String hospital, String doctor, String fecha, int hora){
-        try{
-            PreparedStatement ps = con.Conexion().prepareStatement("SELECT id FROM `citas` WHERE hospital=? AND doctor=? AND fecha=? AND hora=? AND estado='Programada';");
-            ps.setString(1, hospital);
-            ps.setString(2, doctor);
-            ps.setString(3, fecha);
-            ps.setInt(4, hora);
-            ResultSet rs = ps.executeQuery();
-            return rs.next();
-        }catch(SQLException ex) {
-            Logger.getLogger(BaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    } 
-    
-    public void ModificarEstadoCita_Citas(int id,String estado){ 
+    public void ModificarEstadoCita_Citas(int id,int estado){ 
         try {
             PreparedStatement ps = con.Conexion().prepareStatement("UPDATE citas SET estado=? WHERE id=?;"); 
-            ps.setString(1, estado);
+            ps.setInt(1, estado);
             ps.setInt(2, id);
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -330,8 +316,17 @@ public class BaseDeDatos {
     public void CitaRealizada_Citas(int id){ 
         try {
             PreparedStatement ps = con.Conexion().prepareStatement("UPDATE citas SET estado=? WHERE id=?;"); 
-            ps.setString(1, "Realizada");
+            ps.setInt(1, 4);
             ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    public void EliminarCitasporPaciente_Citas(String paciente){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Delete FROM `citas` WHERE paciente=?;");
+            ps.setString(1, paciente);
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);

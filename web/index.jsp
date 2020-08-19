@@ -33,7 +33,7 @@
             </form>
             <br>
             <div><input class="olvido-contra" type="submit" onclick="Recuperar()" id="recuperar" value="¿Olvido su contraseña?" ></div>        
-            <form action="Ingreso" method="get" autocomplete="off">
+            <form action="Ingreso" method="post" autocomplete="off">
                 <div id="olvido_contrasena" style="display: none;">
                     <br>
                     <p>Para recuperar su contraseña se enviara un email al correo electronico correspondiente a su cuenta

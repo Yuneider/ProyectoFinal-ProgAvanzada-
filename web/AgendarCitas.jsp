@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Logica.*"%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -25,61 +26,59 @@
                     <span class="punto">•</span>En caso de no poder asistir a su cita recuerde cancelarla por lo menos con 24 horas de anticipacion.<br>
                     <span class="punto">•</span>Los unicos bloques horarios que se muestran son los disponibles.
                 </p>
-                <div class="item">
-                    <select id="localidad" name="localidad" onchange="habilitarHospital(this.value);" required>
-                        <option value="0" disabled selected >Seleccione una localidad</option>
-                        <option value="ANTONIO NARIÑO">ANTONIO NARIÑO</option>
-                        <option value="BARRIOS UNIDOS">BARRIOS UNIDOS</option>
-                        <option value="BOSA">BOSA</option>
-                        <option value="CHAPINERO">CHAPINERO</option>
-                        <option value="CIUDAD BOLIVAR">CIUDAD BOLIVAR</option>
-                        <option value="DIANA TURBAY">DIANA TURBAY</option>
-                        <option value="ENGATIVA">ENGATIVA</option>
-                        <option value="FONTIBON">FONTIBON</option>
-                        <option value="KENNEDY">KENNEDY</option>
-                        <option value="PUENTE ARANDA">PUENTE ARANDA</option>
-                        <option value="RAFAEL URIBE URIBE">RAFAEL URIBE URIBE</option>
-                        <option value="SANTA FE">SANTA FE</option>
-                        <option value="SAN CRISTOBAL">SAN CRISTOBAL</option>
-                        <option value="SUBA">SUBA</option>
-                        <option value="TUNJUELITO">TUNJUELITO</option>
-                        <option value="USAQUEN">USAQUEN</option>
-                        <option value="USME">USME</option>
-                    </select>
-                </div>
-                <div class="item">
-                    <span id="hospital" name="hospital" class="hospital">Hospital: No definido</span>
-                </div>
-                <div class="item">
-                    <input class="fecha" type="date" name="fecha" id="fecha" disabled>
-                </div>
-                <div class="item">
-                    <select id="especialidad" name="especialidad" onchange="habilitarDoctor(this.value);" disabled>
-                        <option disabled selected>Seleccione una especialidad</option>
-                        <option>Medicina General</option>
-                        <option>Optometria</option>
-                        <option>Odontología</option>
-                    </select>
-                </div>
-                <div class="item">
-                    <span id="doctor" name="doctor" class="doctor">Doctor: No definido</span>
-                </div>
-                <div class="item">
-                    <select id="hora" name="hora" disabled>
-                        <option disabled selected>Seleccione una hora</option>
-                        <option>08 A.M.</option>
-                        <option>09 A.M.</option>
-                        <option>10 A.M.</option>
-                        <option>11 A.M.</option>
-                        <option>12 P.M.</option>
-                        <option>01 P.M.</option>
-                        <option>02 P.M.</option>
-                        <option>03 P.M.</option>
-                        <option>04 P.M.</option>
-                        <option>05 P.M.</option>
-                    </select>
-                </div>
-                <input type="button" class="boton" onclick="ValidarFechas()" value="Programar Cita">
+                <form id="formulario" method="post">
+                    <input type="hidden" name="paciente" id="paciente" value="<%= ((Paciente)session.getAttribute("paciente")).getNombre()%>">
+                    <input type="hidden" name="opcion" value="crearCita">
+                    <div class="item">
+                        <select id="localidad" name="localidad" onchange="habilitarHospital(this.value);">
+                            <option value="0" disabled selected >Seleccione una localidad</option>
+                            <option value="ANTONIO NARIÑO">ANTONIO NARIÑO</option>
+                            <option value="BARRIOS UNIDOS">BARRIOS UNIDOS</option>
+                            <option value="BOSA">BOSA</option>
+                            <option value="CHAPINERO">CHAPINERO</option>
+                            <option value="CIUDAD BOLIVAR">CIUDAD BOLIVAR</option>
+                            <option value="DIANA TURBAY">DIANA TURBAY</option>
+                            <option value="ENGATIVA">ENGATIVA</option>
+                            <option value="FONTIBON">FONTIBON</option>
+                            <option value="KENNEDY">KENNEDY</option>
+                            <option value="PUENTE ARANDA">PUENTE ARANDA</option>
+                            <option value="RAFAEL URIBE URIBE">RAFAEL URIBE URIBE</option>
+                            <option value="SANTA FE">SANTA FE</option>
+                            <option value="SAN CRISTOBAL">SAN CRISTOBAL</option>
+                            <option value="SUBA">SUBA</option>
+                            <option value="TUNJUELITO">TUNJUELITO</option>
+                            <option value="USAQUEN">USAQUEN</option>
+                            <option value="USME">USME</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <select id="hospital" name="hospital"  onchange="habilitarEspecialidad(this.value);" disabled>
+                            <option value="0" disabled selected >Seleccione un hospital</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <input class="fecha" type="date" name="fecha" id="fecha" disabled>
+                    </div>
+                    <div class="item">
+                        <select id="especialidad" name="especialidad" onchange="habilitarDoctor(this.value);" disabled>
+                            <option value="0" disabled selected>Seleccione una especialidad</option>
+                            <option>Medicina General</option>
+                            <option>Optometria</option>
+                            <option>Odontología</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <select id="doctor" name="doctor" onchange="habilitarHora(this.value);" disabled>
+                            <option value="0" disabled selected>Seleccione un doctor</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <select id="hora" name="hora" disabled>
+                            <option disabled value="0" selected>Seleccione una hora</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="boton" onclick="CrearCita();" value="Programar Cita">
+                </form>    
             </div>    
         </section>
         <div id="Navegacion">

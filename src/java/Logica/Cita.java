@@ -8,7 +8,7 @@ public class Cita {
     private int hora;
     private String doctor;
     private String paciente;
-    private String estado;
+    private int estado;
     private String comentario;
     
     public int getId() {
@@ -67,11 +67,11 @@ public class Cita {
         this.paciente = paciente;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 

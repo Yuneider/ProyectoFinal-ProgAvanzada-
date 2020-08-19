@@ -47,7 +47,7 @@
                         <td><% out.print(rs.getString("celular"));%></td>
                         <td><% out.print(rs.getString("usuario"));%></td>
                         <td class="links">
-                            <a href="Ingreso?opcion=eliminarPaciente&usuario=<%= rs.getString("usuario")%>&dni=<%= rs.getString("dni")%>">Eliminar</a>
+                            <a href="Ingreso?opcion=eliminarPaciente&usuario=<%= rs.getString("usuario")%>&dni=<%= rs.getString("dni")%>&nombre=<%= rs.getString("nombre")%>">Eliminar</a>
                         </td>
                     </tr>
                     <% }%>

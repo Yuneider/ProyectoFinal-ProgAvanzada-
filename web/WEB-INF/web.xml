@@ -8,6 +8,10 @@
         <servlet-name>Validaciones</servlet-name>
         <servlet-class>Servlets.Validaciones</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Acciones</servlet-name>
+        <servlet-class>Servlets.Acciones</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Ingreso</servlet-name>
         <url-pattern>/Ingreso</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>Validaciones</servlet-name>
         <url-pattern>/Validaciones</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Acciones</servlet-name>
+        <url-pattern>/Acciones</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

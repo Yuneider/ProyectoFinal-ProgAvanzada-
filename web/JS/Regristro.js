@@ -98,7 +98,7 @@ function ValidarCampos(){
 function CompararFechas(){
     //Comprobamos que tenga formato correcto
     var fecha_aux = document.getElementById("fecha_nacimiento").value.split("-");
-    var Fecha1 = new Date(parseInt(fecha_aux[2]),parseInt(fecha_aux[1]-1),parseInt(fecha_aux[0]));
+    var Fecha1 = new Date(parseInt(fecha_aux[0]),parseInt(fecha_aux[1]-1),parseInt(fecha_aux[2]));
 
     //Comprobamos si existe la fecha
     if (isNaN(Fecha1)){

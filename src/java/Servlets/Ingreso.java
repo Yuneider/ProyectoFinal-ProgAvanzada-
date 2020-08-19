@@ -5,13 +5,6 @@ import Logica.Doctor;
 import Logica.Paciente;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -81,7 +74,7 @@ public class Ingreso extends HttpServlet {
                 response.sendRedirect("VerDoctores.jsp");
             }
             if(request.getParameter("opcion").equals("eliminarPaciente")){   //click en Eliminar Paciente
-                bd.EliminarPaciente_Pacientes(request.getParameter("dni"),request.getParameter("usuario"));
+                bd.EliminarPaciente_Pacientes(request.getParameter("dni"),request.getParameter("usuario"),request.getParameter("nombre"));
                 response.sendRedirect("VerPacientes.jsp");
             }
             if(request.getParameter("opcion").equals("eliminarHospital")){   //click en Eliminar Hospital
@@ -89,8 +82,8 @@ public class Ingreso extends HttpServlet {
                 response.sendRedirect("VerHospitales.jsp");
             }
             if(request.getParameter("opcion").equals("cancelarCita")){ //click en Cancelar Cita
-                bd.ModificarEstadoCita_Citas(Integer.parseInt(request.getParameter("id")),"Cancelar");
-                response.sendRedirect("CancelarCita.jsp");
+                bd.ModificarEstadoCita_Citas(Integer.parseInt(request.getParameter("id")),2);
+                response.sendRedirect("verCitas.jsp");
             }
         }
     }
