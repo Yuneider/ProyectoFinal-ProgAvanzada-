@@ -7,6 +7,7 @@ package Servlets;
 
 import Datos.BaseDeDatos;
 import Logica.Cita;
+import static java.awt.SystemColor.text;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,6 +34,7 @@ public class Acciones extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             if(request.getParameter("opcion").equals("crearCita")){
                 Cita nuevaCita = new Cita();
@@ -79,6 +81,8 @@ public class Acciones extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
     }
 
     /**

@@ -27,6 +27,7 @@ public class Ingreso extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             if(request.getParameter("opcion").equals("ingreso")){       //Click en ingresar
                 String usuario = request.getParameter("usuario"); 
@@ -71,6 +72,16 @@ public class Ingreso extends HttpServlet {
             }
             if(request.getParameter("opcion").equals("eliminarDoctor")){   //click en Eliminar Doctor
                 bd.EliminarDoctor_Doctores(request.getParameter("usuario"));
+                response.sendRedirect("VerDoctores.jsp");
+            }
+            if(request.getParameter("opcion").equals("AgregarDoctor")){   //click en Agregar Doctor
+                Doctor d = new Doctor();
+                d.setNombre(request.getParameter("nombre"));
+                d.setUsuario(request.getParameter("usuario"));
+                d.setContrasena(request.getParameter("contrasena"));
+                d.setHospital(request.getParameter("hospital"));
+                d.setEspecialidad(request.getParameter("especialidad"));
+                bd.InsertarDoctor_Doctores(d);
                 response.sendRedirect("VerDoctores.jsp");
             }
             if(request.getParameter("opcion").equals("eliminarPaciente")){   //click en Eliminar Paciente

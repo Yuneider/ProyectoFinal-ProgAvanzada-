@@ -1,6 +1,50 @@
 body{
-  background-color: rgb(30,32,33);
   text-align: center;
+  font-family: sans-serif;
+  margin-top: 25px;
+  box-sizing: border-box;
+  background-color: rgb(30,32,33);
+}
+td, th{
+  font-size: 15px;
+  text-align: center;
+  color: white;
+}
+thead{
+    border-bottom: solid 2px;
+    background-color: rgba(160, 34, 22, 0.3);
+}
+table{
+    background-color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-collapse: collapse;
+}
+tr:nth-child(even){
+    background-color: rgba(205, 205, 205, 0.3);
+}
+tr:hover td{
+    background-color: rgba(192, 184, 24, 0.2)
+}
+h2{
+  font-size: 10px;
+  text-align: center;
+  color: white;
+}
+h1{
+  font-size: 15px;
+  text-align: center;
+  color: white;
+}
+input{
+  background: transparent;
+  border: none;
+}
+::placeholder{
+  color: white;
 }
 li{
   margin-bottom: 25px;
@@ -33,6 +77,7 @@ header #toggle{
   width: 30px;
   height: 30px;
   cursor: pointer;
+  padding: 18px;
 }
 header #toggle:before{
   content: '';
@@ -79,7 +124,7 @@ header #toggle:after{
   right: -400px;
   width: 400px;
   height: 100vh;
-  background: rgb(53, 144, 213);
+  background: #40c3ff;
   z-index: 1;
   display: grid;
   place-items: center;
@@ -103,49 +148,4 @@ header #toggle:after{
   font-size: 2em;
   font-weight: 600;
   text-transform: uppercase;
-}
-.contenedorGeneral a li{
-  position: absolute;
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 30px;
-  font-size: 1.2em;
-  font-weight: 500;
-}
-.contenedorGeneral{
-  margin-left: 125px;
-  margin-right: 0px;
-}
-.sci{
-  position: absolute;
-  display: inline-block;
-  margin-left: 50px;
-}
-.sci li{
-  list-style: none;
-  display: inline-block;
-  margin-top: 50px;
-}
-.sci li a{
-  position: relative;
-  display: inline-block;
-  text-align: center;
-  border-radius: 25px;
-  margin-right: 50px;
-  margin-left: 40px;
-}
-.sci li a:hover{
-  background: rgba(223, 70, 13, 0.1)
-}
-.sci li a img{
-  width: 200px;
-  height: 200px;
-  margin-top: 30px;
-  text-align: center;
-  place-items: center;
-  margin-bottom: 10px;
-}
-h2{
-  color: #fff;
-  text-decoration: none;
 }

@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
-        <link rel="stylesheet" href="CSS/CancelarCita.css">
+        <link rel="stylesheet" href="CSS/VerCitas.css">
         <meta charset="utf-8">
         <title></title>
     </head>

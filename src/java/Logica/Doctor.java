@@ -6,7 +6,16 @@ public class Doctor {
     private String nombre;
     private String especialidad;
     private String usuario;
+    private String contrasena;
 
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+    
     public String getUsuario() {
         return usuario;
     }
