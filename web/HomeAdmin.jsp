@@ -11,7 +11,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="CSS/HomeAdmin.css">
-    <title>Home_Admin</title>
+    <title>Administrador</title>
   </head>
   <body>
     <section class="banner" id="sec">

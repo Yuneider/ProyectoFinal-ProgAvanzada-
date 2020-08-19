@@ -5,11 +5,38 @@ body{
   box-sizing: border-box;
   background-color: rgb(30,32,33);
 }
-td, th{
-  width: 200px;
+td{
+  width: auto;
+  height: 50px;
+  font-size: 20px;
+  text-align: justify;
+  color: white;
+  padding: 5px;
+}
+.td-numero{
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center  ;
+    color: white;
+    padding: 5px;
+}
+.td-horario{
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center  ;
+    color: white;
+    padding: 5px;
+}
+th{
+  width: auto;
+  height: 50px;
   font-size: 20px;
   text-align: center;
   color: white;
+  padding: 15px;
+
 }
 thead{
     border-bottom: solid 2px;
@@ -19,7 +46,7 @@ thead{
   font-family: "Latin Modern Roman 10";  
   font-size: xx-large;
   color: white;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 table{
     background-color: rgba(255, 255, 255, 0.3);
@@ -137,4 +164,14 @@ header #toggle:after{
   font-size: 2em;
   font-weight: 600;
   text-transform: uppercase;
+}
+.contenido-pag{
+    padding-top: 100px;
+}
+.links{
+    font-family: "Latin Modern Roman 10";
+    font-size: 20px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
 }

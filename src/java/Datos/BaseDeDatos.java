@@ -320,10 +320,12 @@ public class BaseDeDatos {
             ps.setInt(6, c.getEstado());
             ps.setString(7, c.getComentario());
             ps.executeUpdate();
-            String mensaje ="Cordial saludo por parte de todo el equipo Medicine-Plus. \n\n"
+            String mensaje ="Cordial saludo por parte de todo el equipo Medicine-Plus. "
                         + "Es para nosotros un placer prestarte nuestros servicios.\n\n"
-                        + "Queremos notificarte que tu cita quedó agendada.\n\n"
-                        + "Muchas gracias por usar nuestros servicios.";
+                        + "Queremos notificarte que tu cita quedó programada para el dia "+c.getFecha()
+                        + " a las "+c.getHora()+":00, con el Dr(a) "+c.getDoctor()
+                        + ", en la dirección: "+GetDir_Hosptiales(c.getHospital())+" ("+c.getHospital()
+                        + ").\n\nMuchas gracias por usar nuestros servicios.";
             EnviarCorreo(GetCorreo_Pacientes(c.getPaciente()),mensaje,"Confirmación de su cita");
         } catch (SQLException e) {
             System.out.println(e);
@@ -463,6 +465,21 @@ public class BaseDeDatos {
             }
         } catch (SQLException ex) {
             System.out.println(ex);
+        }
+    }
+    public String GetDir_Hosptiales(String nombre){
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("Select dir FROM `hospitales` WHERE nombre=?;");
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("dir");
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
         }
     }
 

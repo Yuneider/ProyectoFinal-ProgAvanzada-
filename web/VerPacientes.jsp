@@ -21,7 +21,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="CSS/VerUsuarios.css">
-    <title>Perfil_usuario</title>
+    <title>Pacientes</title>
   </head>
   <body>
     <div class="banner" id="sec">

@@ -11,7 +11,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="CSS/PerfilPaciente.css">
-    <title>Perfil Paciente</title>
+    <title><%= ((Paciente)session.getAttribute("paciente")).getNombre()%></title>
   </head>
   <body>
     <section class="banner" id="sec">

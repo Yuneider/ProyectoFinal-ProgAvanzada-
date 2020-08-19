@@ -5,12 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Logica.Paciente"%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="CSS/HomePaciente.css">
-    <title>Home_Usuario</title>
+    <title><%= ((Paciente)session.getAttribute("paciente")).getNombre()%></title>
   </head>
   <body>
     <section class="banner" id="sec">

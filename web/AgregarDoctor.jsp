@@ -9,8 +9,9 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="CSS/HomePaciente.css">
-        <title>Agendar_Citas</title>    
+        <link href="CSS/AgregarDoctor.css" rel="stylesheet" type="text/css"/>
+        <script src="JS/AgregarDoctor.js" type="text/javascript"></script>
+        <title>Nuevo Doctor</title>    
     </head>
     <body>
         <section class="banner" id="sec">
@@ -18,40 +19,48 @@
                 <div class="logo"><img src="FILES/Logo.png"></div>
                 <div id="toggle" onclick="toggle()"></div>
             </header>
-            <div class="datos-nueva-cita">
-                <form action="Ingreso">
-                <span class="titulo">AGREGAR NUEVO DOCTOR:</span>
+            <div class="pag-centro">
+                <span class="titulo">AGREGAR NUEVO DOCTOR:</span>    
                 <div class="item">
-                    <input class="ingreso" id="nombre" name="nombre" type="text" placeholder="Ingrese su nombre"></input>
+                    <input class="ingreso" id="nombre" name="nombre" type="text" onKeyPress="if(this.value.length==30) return false" placeholder="Ingrese su nombre"></input>
                 </div>
                 <div class="item">
-                    <input class="ingreso" id="usuario" name="usuario" type="text" placeholder="Ingrese su usuario"></input>
+                    <input class="ingreso" id="usuario" name="usuario" type="text" onKeyPress="if(this.value.length==20) return false" placeholder="Ingrese su usuario"></input>
+                </div>
+                <div class="error" id="error"></div>
+                <div class="item">
+                    <input class="ingreso" id="contrasena" name="contrasena" type="password" onKeyPress="if(this.value.length==20) return false" placeholder="Ingrese su contraseña"></input>
+                    <button class="boton-ver" onclick="mostrarContrasena()">
+                        <img class="img-ver" src="FILES/Ver.png" alt=""/>
+                    </button>
                 </div>
                 <div class="item">
-                    <input class="ingreso" id="contrasena" name="contrasena" type="text" placeholder="Ingrese su contraseña"></input>
-                </div>
-                <div class="item">
-                    <select id="hospital" name="hospital">
-                        <option disabled selected>Seleccione un hospital</option>
-                        <option value="Unidad Médica San Antonio Policía Nacional">Unidad Médica San Antonio Policía Nacional</option>
-                        <option value="Hospital Universitario Méderi Barrios Unidos">Hospital Universitario Méderi Barrios Unidos</option>
-                        <option value="Hospital de Bosa II Nivel">Hospital de Bosa II Nivel</option>
-                        <option value="CAMI CHAPINERO">CAMI CHAPINERO</option>
-                        <option value="Hospital Meissen">Hospital Meissen</option>
-                        <option value="CAMI DIANA TURBAY">CAMI DIANA TURBAY</option>
-                        <option value="Hospital de Engativa">Hospital de Engativa</option>
-                        <option value="Hospital Fontibón E.S.E.">Hospital Fontibón E.S.E.</option>
-                        <option value="Hospital de Kennedy">Hospital de Kennedy</option>
-                        <option value="Hospital del Sur UPA 11">Hospital del Sur UPA 11</option>
-                        <option value="Hospital Rafael Uribe Uribe E.S.E.">Hospital Rafael Uribe Uribe E.S.E.</option>
-                        <option value="Fundacion Santa Fe de Bogota Hospital Universitario">Fundacion Santa Fe de Bogota Hospital Universitario</option>
-                        <option value="UPA SAN CRISTOBAL">UPA SAN CRISTOBAL</option>
-                        <option value="Hospital Cafam Suba">Hospital Cafam Suba</option>
-                        <option value="Hospital Tunjuelito">Hospital Tunjuelito</option>
-                        <option value="Hospital de Usaquen">Hospital de Usaquen</option>
-                        <option value="Hospital de Usme">Hospital de Usme</option>
+                    <select id="localidad" name="localidad" onchange="habilitarHospital(this.value);">
+                        <option value="0" disabled selected >Seleccione una localidad</option>
+                        <option value="ANTONIO NARIÑO">ANTONIO NARIÑO</option>
+                        <option value="BARRIOS UNIDOS">BARRIOS UNIDOS</option>
+                        <option value="BOSA">BOSA</option>
+                        <option value="CHAPINERO">CHAPINERO</option>
+                        <option value="CIUDAD BOLIVAR">CIUDAD BOLIVAR</option>
+                        <option value="DIANA TURBAY">DIANA TURBAY</option>
+                        <option value="ENGATIVA">ENGATIVA</option>
+                        <option value="FONTIBON">FONTIBON</option>
+                        <option value="KENNEDY">KENNEDY</option>
+                        <option value="PUENTE ARANDA">PUENTE ARANDA</option>
+                        <option value="RAFAEL URIBE URIBE">RAFAEL URIBE URIBE</option>
+                        <option value="SANTA FE">SANTA FE</option>
+                        <option value="SAN CRISTOBAL">SAN CRISTOBAL</option>
+                        <option value="SUBA">SUBA</option>
+                        <option value="TUNJUELITO">TUNJUELITO</option>
+                        <option value="USAQUEN">USAQUEN</option>
+                        <option value="USME">USME</option>
                     </select>
                 </div>
+                <div class="item">
+                    <select id="hospital" name="hospital"  onchange="habilitarEspecialidad(this.value);" disabled>
+                        <option value="0" disabled selected >Seleccione un hospital</option>
+                    </select>
+                </div>    
                 <div class="item">
                     <select id="especialidad" name="especialidad">
                         <option disabled selected>Seleccione un especialidad</option>
@@ -61,8 +70,7 @@
                     </select>
                 </div>
                 <input type="hidden" id="opcion" name="opcion" value="AgregarDoctor"></input>  
-                <input type="submit" class="boton"  value="Ingresar Doctor"></input>  
-                </form>
+                <input type="button" class="boton" onclick="crearDoctor()" value="Ingresar Doctor"></input> 
             </div>    
         </section>
         <div id="Navegacion">
@@ -73,5 +81,4 @@
         </div>
     </body>
     <script src="JS/Barra.js"></script>
-    <script src="JS/AgendarCitas.js" type="text/javascript"></script>
 </html>

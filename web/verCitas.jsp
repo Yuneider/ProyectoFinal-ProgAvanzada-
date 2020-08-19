@@ -23,7 +23,7 @@
     <head>
         <link rel="stylesheet" href="CSS/VerCitas.css">
         <meta charset="utf-8">
-        <title></title>
+        <title>Mis Citas</title>
     </head>
     <body>
         <section class="banner" id="sec">

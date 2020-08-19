@@ -10,7 +10,7 @@ function validarAjax() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("valDocumento").innerHTML = this.responseText;
+                document.getElementById("valDocumento").innerHTML =this.responseText;
                 if(this.responseText == ""){
                     document.getElementById("valDocumento").innerHTML = "(*)";
                     ValidarCampos();

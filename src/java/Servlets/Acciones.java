@@ -7,7 +7,6 @@ package Servlets;
 
 import Datos.BaseDeDatos;
 import Logica.Cita;
-import static java.awt.SystemColor.text;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -49,7 +48,7 @@ public class Acciones extends HttpServlet {
                 nuevaCita.setEstado(1);
                 nuevaCita.setComentario("");
                 bd.InsertarCita_Citas(nuevaCita);
-                response.sendRedirect("HomePaciente.jsp");
+                response.sendRedirect("verCitas.jsp");
             }
         }
     }

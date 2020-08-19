@@ -5,13 +5,43 @@ body{
   box-sizing: border-box;
   background-color: rgb(30,32,33);
 }
-td, th{
+.td-ips,.td-direccion{
+  font-family: "Latin Modern Roman 10";
+  font-size: 20px;
+  text-align: justify;
+  color: white;
+  padding: 5px;
+  width: 400px;
+}
+.td-localidad,th{
+  font-family: "Latin Modern Roman 10";
+  font-size: 20px;
+  text-align: justify;
+  color: white;
+  padding: 5px;
+  width: 220px;
+}
+.td-numero{
   font-family: "Latin Modern Roman 10";
   font-size: 20px;
   text-align: center;
   color: white;
   padding: 5px;
-  width: 150px;
+  width: 80px;
+}
+.th-acciones{
+    font-family: "Latin Modern Roman 10";
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    padding: 5px;
+    width: 220px;
+}
+.links{
+    font-family: "Latin Modern Roman 10";
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
 }
 thead{
     border-bottom: solid 2px;
@@ -140,4 +170,7 @@ header #toggle:after{
   font-family: "Latin Modern Roman 10";
   font-size: xx-large;
   color: white;
+}
+.contenido-pag{
+    padding-top: 100px;
 }

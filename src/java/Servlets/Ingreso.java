@@ -37,6 +37,7 @@ public class Ingreso extends HttpServlet {
                     response.sendRedirect("HomePaciente.jsp");
                 }
                 if(bd.GetRol_Usuarios(usuario).equals("Admin")){
+                    request.getSession().setAttribute("usuario", usuario);
                     response.sendRedirect("HomeAdmin.jsp");
                 }
                 if(bd.GetRol_Usuarios(usuario).equals("Doctor")){
@@ -89,7 +90,7 @@ public class Ingreso extends HttpServlet {
                 response.sendRedirect("VerPacientes.jsp");
             }
             if(request.getParameter("opcion").equals("eliminarHospital")){   //click en Eliminar Hospital
-                bd.EliminarHospital_Hospitales(request.getParameter("nombre"));
+                bd.EliminarHospital_Hospitales(request.getParameter("hospital"));
                 response.sendRedirect("VerHospitales.jsp");
             }
             if(request.getParameter("opcion").equals("cancelarCita")){ //click en Cancelar Cita
