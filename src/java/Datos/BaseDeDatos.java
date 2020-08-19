@@ -1,6 +1,7 @@
 package Datos;
 
 import Logica.*;
+import java.io.UnsupportedEncodingException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -309,7 +310,7 @@ public class BaseDeDatos {
         }
     }
 
-    public void InsertarCita_Citas(Cita c) {
+    public void InsertarCita_Citas(Cita c) throws UnsupportedEncodingException {
         try {
             PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `citas` (hospital,fecha,hora,doctor,paciente,estado,comentario) VALUES(?,?,?,?,?,?,?);");
             ps.setString(1, c.getHospital());
@@ -348,7 +349,7 @@ public class BaseDeDatos {
         }
     }
     
-    public void ModificarEstadoCita_Citas(int id, int estado) {
+    public void ModificarEstadoCita_Citas(int id, int estado) throws UnsupportedEncodingException {
         try {
             PreparedStatement ps = con.Conexion().prepareStatement("UPDATE citas SET estado=? WHERE id=?;");
             ps.setInt(1, estado);
@@ -484,18 +485,18 @@ public class BaseDeDatos {
         }
     }
 
-    public void EnviarCorreo(String correo, String mensaje, String asunto) {
+    public void EnviarCorreo(String correo, String mensaje, String asunto) throws UnsupportedEncodingException {
         Properties propiedad = new Properties();
         propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
         propiedad.setProperty("mail.smtp.starttls.enable", "true");
         propiedad.setProperty("mail.smtp.port", "587");
         propiedad.setProperty("mail.smtp.auth", "true");
         Session sesion = Session.getDefaultInstance(propiedad);
-        String correoEnvia = "cgpmedicineplus@gmail.com";
-        String contrasena = "CGPMedicine";
+        String correoEnvia = "medinice.plus@gmail.com";
+        String contrasena = "vxnprjlttsposofv";
         MimeMessage mail = new MimeMessage(sesion);
         try {
-            mail.setFrom(new InternetAddress(correoEnvia));
+            mail.setFrom(new InternetAddress(correoEnvia,"Medicine-Plus"));
             mail.addRecipient(Message.RecipientType.TO, new InternetAddress(correo));
             mail.setSubject(asunto);
             mail.setText(mensaje);
