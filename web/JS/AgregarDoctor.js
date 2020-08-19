@@ -31,6 +31,7 @@ function crearDoctor(){
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("error").innerHTML = this.responseText;
             if(this.responseText == ""){
+                document.getElementById("form").submit();
             }        
         }
     };

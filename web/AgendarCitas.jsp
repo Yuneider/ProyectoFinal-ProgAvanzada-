@@ -11,7 +11,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="CSS/HomePaciente.css">
-        <title>Agendar_Citas</title>    
+        <title>Agendar Citas</title>    
     </head>
     <body>
         <section class="banner" id="sec">

@@ -11,7 +11,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="CSS/HomePaciente.css">
-    <title><%= ((Paciente)session.getAttribute("paciente")).getNombre()%></title>
+    <title>Bienvenido <%=((Paciente)session.getAttribute("paciente")).getNombre()%></title>
   </head>
   <body>
     <section class="banner" id="sec">

@@ -11,7 +11,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="CSS/HomeAdmin.css">
-    <title>Administrador</title>
+    <title>Bienvenido <%=(session.getAttribute("usuario"))%></title>
   </head>
   <body>
     <section class="banner" id="sec">

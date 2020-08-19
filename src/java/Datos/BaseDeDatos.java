@@ -235,10 +235,10 @@ public class BaseDeDatos {
         }
     }
 
-    public Doctor GetDoctor_Doctores(String nombre) {
+    public Doctor GetDoctor_Doctores(String usuario) {
         try {
-            PreparedStatement ps = con.Conexion().prepareStatement("Select * FROM `doctores` WHERE nombre=?;");
-            ps.setString(1, nombre);
+            PreparedStatement ps = con.Conexion().prepareStatement("Select * FROM `doctores` WHERE usuario=?;");
+            ps.setString(1, usuario);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Doctor d = new Doctor();
@@ -356,7 +356,7 @@ public class BaseDeDatos {
             ps.executeUpdate();
             String mensaje ="Cordial saludo por parte de todo el equipo Medicine-Plus. \n\n"
                         + "Es para nosotros un placer prestarte nuestros servicios.\n\n"
-                        + "Queremos notificarte que tu cita ahora está NUEVO ESTADO.\n\n"
+                        + "Queremos notificarle que tu cita ha sido cancelada\n\n"
                         + "Muchas gracias por usar nuestros servicios.";
             EnviarCorreo(GetCorreo_Pacientes(GetPaciente_Citas(id)),mensaje,"Modificación de su cita");
         } catch (SQLException ex) {
@@ -467,6 +467,7 @@ public class BaseDeDatos {
             System.out.println(ex);
         }
     }
+   
     public String GetDir_Hosptiales(String nombre){
         try {
             PreparedStatement ps = con.Conexion().prepareStatement("Select dir FROM `hospitales` WHERE nombre=?;");
