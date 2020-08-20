@@ -1,5 +1,7 @@
 package Logica;
 
+import java.util.Calendar;
+
 public class Doctor {
 
     private String hospital;
@@ -48,4 +50,22 @@ public class Doctor {
         this.especialidad = especialidad;
     }
     
-}
+    public String FechaActual(){
+        Calendar fecha = Calendar.getInstance();
+        int dia = fecha.get(Calendar.DATE);
+        int mes = fecha.get(Calendar.MONTH)+1;
+        int anio = fecha.get(Calendar.YEAR);
+        String fechaF="";
+        if(dia<10){
+            fechaF+="0"+dia;
+        }else{
+            fechaF+=dia;
+        }
+        if(mes<10){
+            fechaF+="/0"+mes+"/"+anio;
+        }else{
+            fechaF+="/"+mes+"/"+anio;
+        }
+        return fechaF;
+    }
+}    

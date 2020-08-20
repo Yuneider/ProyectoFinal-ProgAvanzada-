@@ -105,6 +105,14 @@ public class Ingreso extends HttpServlet {
                 bd.ModificarEstadoCita_Citas(Integer.parseInt(request.getParameter("id")),2);
                 response.sendRedirect("verCitas.jsp");
             }
+            if(request.getParameter("opcion").equals("evolucionarCita")){ //click en Evolucionar Cita
+                bd.ModificarEstadoCita_Citas(Integer.parseInt(request.getParameter("id")),4);
+                response.sendRedirect("HomeDoctor.jsp");
+            }
+            if(request.getParameter("opcion").equals("citaIncumplida")){ //click en Cita Incumplida
+                bd.ModificarEstadoCita_Citas(Integer.parseInt(request.getParameter("id")),3);
+                response.sendRedirect("HomeDoctor.jsp");
+            }
         }
     }
     

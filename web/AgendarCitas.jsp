@@ -72,6 +72,7 @@
                             <option value="0" disabled selected>Seleccione un doctor</option>
                         </select>
                     </div>
+                    <div class="error" id="error"></div>
                     <div class="item">
                         <select id="hora" name="hora" disabled>
                             <option disabled value="0" selected>Seleccione una hora</option>

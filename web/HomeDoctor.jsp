@@ -13,7 +13,7 @@
 <% 
     Conexion con = new Conexion();
     Connection c = con.Conexion();
-    String sqr = "select * from citas Where doctor='"+((Doctor)session.getAttribute("doctor")).getNombre()+"';";
+    String sqr = "select * from citas Where doctor='"+((Doctor)session.getAttribute("doctor")).getNombre()+"' AND fecha='"+((Doctor)session.getAttribute("doctor")).FechaActual()+"';";
     PreparedStatement ps = c.prepareStatement(sqr);
     ResultSet rs=ps.executeQuery();
 %>
@@ -22,6 +22,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="CSS/HomeDoctor.css">
+    <script src="JS/HomeDoctor.js" type="text/javascript"></script>
     <title>Bienvenido <%=((Doctor)session.getAttribute("doctor")).getNombre()%></title>
   </head>
   <body>
@@ -30,25 +31,36 @@
         <div class="logo"><img src="FILES/Logo.png"></div>
         <div id="toggle" onclick="toggle()"></div>
       </header>
-      <h1>Citas</h1>
-      <table>
-        <thead>
-          <th>Paciente</th><th>Hora</th><th>Fecha</th><th>Estado</th><th>Observación</th><th>Acciones</th>
-        </thead>
-        <%while(rs.next()){%>
-        <tr>
-          <td><% out.print(rs.getString("paciente"));%></td>
-          <td><% out.print(rs.getString("hora"));%></td>
-          <td><% out.print(rs.getString("fecha"));%></td>
-          <td><% out.print(rs.getString("estado"));%></td>
-          <td><input type="text" value=<% out.print(rs.getString("comentario"));%>></td>
-          <td class="links">
-            <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Evolucionar Cita</a>
-            <a href="ACA VA HACIA SU FUNCION CORRESPONDIENTE">Cita Incumplida</a>
-          </td>
-        </tr>
-        <% }%>
-      </table>
+        <div class="info-pag"> 
+            <div class="titulo">Citas para hoy (<%out.print(((Doctor)session.getAttribute("doctor")).FechaActual());%>)</div>
+                <table>
+                  <thead>
+                    <th>Paciente</th><th>Hora</th><th>Fecha</th><th>Estado</th><th>Acciones</th>
+                  </thead>
+                  <%while(rs.next()){%>
+                  <tr>
+                      <td class="pac"><% out.print(rs.getString("paciente"));%></td>
+                    <td class="hora"><% out.print(rs.getString("hora"));%>:00</td>
+                    <td class="fecha"><% out.print(rs.getString("fecha"));%></td>
+                    <td class="estado"><% if(Integer.parseInt(rs.getString("estado"))==1){out.print("Planificada");}
+                        else if(Integer.parseInt(rs.getString("estado"))==2){out.print("Cancelada");}
+                        else if(Integer.parseInt(rs.getString("estado"))==3){out.print("Incumplida");}
+                        else if(Integer.parseInt(rs.getString("estado"))==4){out.print("Realizada");}
+                    %></td>
+                    <td class="acc">
+                        <a class="links"
+                         <% if(Integer.parseInt(rs.getString("estado"))==2){out.print("style=\"pointer-events:none;color: black;\" value=\"Cita Cancelada\"");}
+                         else if(Integer.parseInt(rs.getString("estado"))==3){out.print("style=\"pointer-events:none;color: black;\" value=\"Cita Incumplida\"");}
+                         else if(Integer.parseInt(rs.getString("estado"))==4){out.print("style=\"pointer-events:none;color: black;\" value=\"Cita Realizada\"");}
+                         else{out.print("style=\"color: blue;\"");}%>href="Ingreso?opcion=evolucionarCita&id=<%= rs.getInt("id")%>">Evolucionar Cita</a>                        
+                         
+                         <a  <% if(Integer.parseInt(rs.getString("estado"))!=1){out.print("style=\"pointer-events:none;color:black;\"");}%> 
+                                href="Ingreso?opcion=citaIncumplida&id=<%= rs.getInt("id")%>">Cita incumplida</a>
+                    </td>
+                  </tr>
+                  <% }%>
+                </table>
+        </div>    
     </section>
     <div id="Navegacion">
       <ul>

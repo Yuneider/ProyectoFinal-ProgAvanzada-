@@ -50,8 +50,10 @@
                             %></td>
                         <td><% out.print(rs.getString("comentario"));%></td>
                         <td class="links">
-                            <a  <% if(Integer.parseInt(rs.getString("estado"))!=1){out.print("style=\"pointer-events:none;color:rgb(98,99,100);\"");}%> 
-                                href="Ingreso?opcion=cancelarCita&id=<%= rs.getInt("id")%>">Cancelar Cita</a>
+                            <a  <% if(Integer.parseInt(rs.getString("estado"))!=1){out.print("style=\"pointer-events:none;color: black;\"");}%> 
+                                href="Ingreso?opcion=cancelarCita&id=<%= rs.getInt("id")%>">
+                                <% if(Integer.parseInt(rs.getString("estado"))!=1){out.print("Cita Cancelada");
+                                }else{out.print("Cancelar Cita");}%></a>
                         </td>
                     </tr>
                     <% }%>

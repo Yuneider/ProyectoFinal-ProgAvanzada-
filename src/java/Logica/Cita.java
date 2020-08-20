@@ -1,5 +1,7 @@
 package Logica;
 
+import java.util.Calendar;
+
 public class Cita {
 
     private int id;
@@ -74,6 +76,5 @@ public class Cita {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-
     
 }

@@ -65,6 +65,10 @@ function habilitarDoctor(value){
                 document.getElementById("doctor").disabled=false;
                 document.getElementById('doctor').options[0].selected = true;
                 document.getElementById('hora').options[0].selected = true;
+                if(this.responseText=="<option value=\"0\" disabled selected >Seleccione una doctor</option>"){
+                    document.getElementById("error").innerHTML = "No se encuentra doctor para esa especialidad<br>"+
+                    "Por favor seleccione otro hospital. ";
+                }
             }
         };
         xhttp.open("POST", url, true);

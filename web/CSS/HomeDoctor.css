@@ -1,14 +1,21 @@
 body{
   text-align: center;
-  font-family: sans-serif;
+  font-family: "Latin Modern Roman 10";
   margin-top: 25px;
   box-sizing: border-box;
   background-color: rgb(30,32,33);
 }
-td, th{
+.acc,.pac{
   font-size: 15px;
   text-align: center;
   color: white;
+  width: 300px; height: 50px;
+}
+th{
+    height: 80px;
+}
+.info-pag{
+    margin-top: 80px;
 }
 thead{
     border-bottom: solid 2px;
@@ -17,7 +24,7 @@ thead{
 table{
     background-color: rgba(255, 255, 255, 0.3);
     text-align: center;
-    width: 90%;
+    width: 95%;
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
@@ -29,22 +36,23 @@ tr:nth-child(even){
 tr:hover td{
     background-color: rgba(192, 184, 24, 0.2)
 }
-h2{
-  font-size: 10px;
-  text-align: center;
-  color: white;
-}
-h1{
-  font-size: 15px;
-  text-align: center;
-  color: white;
-}
 input{
   background: transparent;
   border: none;
 }
+.estado,.hora,.fecha{
+    font-size: 15px;
+     text-align: center;
+    color: white;
+    width: 200px; height: 50px;
+}
 ::placeholder{
   color: white;
+}
+.titulo{
+    font-size: xx-large;
+    color: rgb(53, 144, 213);
+    margin-bottom: 20px;
 }
 li{
   margin-bottom: 25px;
@@ -148,4 +156,8 @@ header #toggle:after{
   font-size: 2em;
   font-weight: 600;
   text-transform: uppercase;
+}
+.links{
+   font-family: "Latin Modern Roman 10";
+   padding: 3px;
 }

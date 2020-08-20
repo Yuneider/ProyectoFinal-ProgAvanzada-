@@ -10,6 +10,7 @@ td, th{
   text-align: center;
   color: white;
   width: 200px;
+  height: 60px;
 }
 thead{
     border-bottom: solid 2px;

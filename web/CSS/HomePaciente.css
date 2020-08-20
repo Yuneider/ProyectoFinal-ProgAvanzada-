@@ -222,4 +222,9 @@ select{
     margin-top: 10px;
     text-align-last: center;  
 }
-
+.error{
+    width: 100%;
+    color: rgb(182, 3, 3);
+    font-family: "Latin Modern Roman 10";
+    font-size: 15pt;
+}
