@@ -68,6 +68,8 @@ function habilitarDoctor(value){
                 if(this.responseText=="<option value=\"0\" disabled selected >Seleccione una doctor</option>"){
                     document.getElementById("error").innerHTML = "No se encuentra doctor para esa especialidad<br>"+
                     "Por favor seleccione otro hospital. ";
+                }else{
+                    document.getElementById("error").innerHTML = "";
                 }
             }
         };
