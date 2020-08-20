@@ -26,7 +26,7 @@ public class Hospital {
         return localidad;
     }
 
-    public void setLocalidad(String barrio) {
+    public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
     

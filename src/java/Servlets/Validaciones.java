@@ -124,6 +124,13 @@ public class Validaciones extends HttpServlet {
                 }
                 
             }
+            if("existeHospital".equals(tipoValidacion)){
+                if(bd.ExisteHospital_Hospitales(request.getParameter("hospital"))){
+                    out.print("(hospital. ya registrado)");
+                }else{
+                    out.print("");
+                }
+            }
         }catch(Exception e){
             System.out.println(e);
         }

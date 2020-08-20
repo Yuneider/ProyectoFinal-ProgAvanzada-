@@ -19,34 +19,36 @@
         <div class="logo"><img src="FILES/Logo.png"></div>
         <div id="toggle" onclick="toggle()"></div>
       </header>
-      <div class="item">
-        <h2>Documento de identidad:</h2>
-        <%= ((Paciente)session.getAttribute("paciente")).getDni()%>
-      </div>
-      <div class="item">
-        <h2>Nombre completo:</h2>
-        <%= ((Paciente)session.getAttribute("paciente")).getNombre()%>
-      </div>
-      <div class="item">
-        <h2>Edad:</h2>
-        <%= ((Paciente)session.getAttribute("paciente")).getEdad()%>
-      </div>
-      <div class="item">
-        <h2>Correo electrónico:</h2>
-        <%= ((Paciente)session.getAttribute("paciente")).getCorreo()%>
-      </div>
-      <div class="item">
-        <h2>Direccion de su hogar:</h2>
-        <%= ((Paciente)session.getAttribute("paciente")).getDir()%>
-      </div>
-      <div class="item">
-        <h2>Barrio en el que reside:</h2>
-        <%= ((Paciente)session.getAttribute("paciente")).getBarrio()%>
-      </div>
-      <div class="item">
-        <h2>Número celular:</h2>
-        <%= ((Paciente)session.getAttribute("paciente")).getCelular()%>
-      </div>
+        <div class="contenedorGeneral">
+            <div class="item">
+            <h2>Documento de identidad:</h2>
+            <span><%= ((Paciente)session.getAttribute("paciente")).getDni()%></span>
+          </div>
+          <div class="item">
+            <h2>Nombre completo:</h2>
+            <span><%= ((Paciente)session.getAttribute("paciente")).getNombre()%></span>
+          </div>
+          <div class="item">
+            <h2>Edad:</h2>
+            <span><%= ((Paciente)session.getAttribute("paciente")).getEdad()%></span>
+          </div>
+          <div class="item">
+            <h2>Correo electrónico:</h2>
+            <span><%= ((Paciente)session.getAttribute("paciente")).getCorreo()%></span>
+          </div>
+          <div class="item">
+            <h2>Direccion de su hogar:</h2>
+            <span><%= ((Paciente)session.getAttribute("paciente")).getDir()%></span>
+          </div>
+          <div class="item">
+            <h2>Barrio en el que reside:</h2>
+            <span><%= ((Paciente)session.getAttribute("paciente")).getBarrio()%></span>
+          </div>
+          <div class="item">
+            <h2>Número celular:</h2>
+            <span><%= ((Paciente)session.getAttribute("paciente")).getCelular()%></span>
+          </div>
+        </div>
     </section>
     <div id="Navegacion">
       <ul>

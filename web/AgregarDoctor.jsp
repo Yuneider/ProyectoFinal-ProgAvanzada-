@@ -30,7 +30,7 @@
                     </div>
                     <div class="error" id="error"></div>
                     <div class="item">
-                        <input class="ingreso" id="contrasena" name="contrasena" type="password" onKeyPress="if(this.value.length==20) return false" placeholder="Ingrese su contraseña"></input>
+                        <input class="ingreso-contra" id="contrasena" name="contrasena" type="password" onKeyPress="if(this.value.length==20) return false" placeholder="Ingrese su contraseña"></input>
                         <button class="boton-ver" onclick="mostrarContrasena()">
                             <img class="img-ver" src="FILES/Ver.png" alt=""/>
                         </button>
@@ -64,14 +64,14 @@
                     </div>    
                     <div class="item">
                         <select id="especialidad" name="especialidad">
-                            <option disabled selected>Seleccione un especialidad</option>
+                            <option value="0" disabled selected>Seleccione un especialidad</option>
                             <option>Medicina General</option>
                             <option>Optometria</option>
                             <option>Odontología</option>
                         </select>
                     </div>
                     <input type="hidden" id="opcion" name="opcion" value="AgregarDoctor"></input>  
-                    <input type="button" class="boton" onclick="crearDoctor()" value="Ingresar Doctor"></input>
+                    <input type="button" class="boton" onclick="CrearDoctor()" value="Ingresar Doctor"></input>
                 </form> 
             </div>    
         </section>

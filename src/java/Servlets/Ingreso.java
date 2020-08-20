@@ -1,8 +1,7 @@
 package Servlets;
 
 import Datos.BaseDeDatos;
-import Logica.Doctor;
-import Logica.Paciente;
+import Logica.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -91,6 +90,14 @@ public class Ingreso extends HttpServlet {
             }
             if(request.getParameter("opcion").equals("eliminarHospital")){   //click en Eliminar Hospital
                 bd.EliminarHospital_Hospitales(request.getParameter("hospital"));
+                response.sendRedirect("VerHospitales.jsp");
+            }
+            if(request.getParameter("opcion").equals("AgregarHospital")){   //click en Agregar Hospital
+                Hospital h = new Hospital();
+                h.setNombre(request.getParameter("hospital"));
+                h.setLocalidad(request.getParameter("localidad"));
+                h.setDir(request.getParameter("direccion"));
+                bd.InsertarHospital_Hospitales(h);
                 response.sendRedirect("VerHospitales.jsp");
             }
             if(request.getParameter("opcion").equals("cancelarCita")){ //click en Cancelar Cita

@@ -105,4 +105,18 @@ header #toggle:after{
   font-weight: 600;
   text-transform: uppercase;
 }
-
+.item{
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+}
+.contenedorGeneral{
+  padding: 1em;
+  margin-top: 80px;
+  border-radius: 15px;
+  background-color: rgba(22, 20, 26, 0.77);
+}
+h2{
+    color: #802626;
+}

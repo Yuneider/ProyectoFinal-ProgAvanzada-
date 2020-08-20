@@ -420,6 +420,18 @@ public class BaseDeDatos {
         }
     }
 
+    public boolean ExisteHospital_Hospitales(String nombre) {
+        try {
+            PreparedStatement ps = con.Conexion().prepareStatement("SELECT nombre FROM `hospitales` WHERE nombre=?;");
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+    
     public String GetNombreHospital_Hospitales(String localidad) {
         try {
             PreparedStatement ps = con.Conexion().prepareStatement("Select nombre FROM `hospitales` WHERE localidad=?;");
@@ -436,23 +448,19 @@ public class BaseDeDatos {
             return null;
         }
     }
-
+    
     public void InsertarHospital_Hospitales(Hospital h) {
         try {
-            if (!ValidarNombreHospital_Hospitales(h.getNombre()) && !ValidarDirHospital_Hospitales(h.getDir())) {
-                PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO `hospitales` (nombre,dir,localidad) VALUES(?,?,?);");
-                ps.setString(1, h.getNombre());
-                ps.setString(2, h.getDir());
-                ps.setString(3, h.getLocalidad());
-                ps.executeUpdate();
-            } else {
-                System.out.println("El hospital ya existe");
-            }
+            PreparedStatement ps = con.Conexion().prepareStatement("INSERT INTO hospitales (nombre,dir,localidad) VALUES(?,?,?);");
+            ps.setString(1, h.getNombre());
+            ps.setString(2, h.getDir());
+            ps.setString(3, h.getLocalidad());
+            ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
-
+    
     public void EliminarHospital_Hospitales(String nombre) { //ELIMINAR DOCTORES DE ESE HOSPITAL
         try {
             PreparedStatement ps1 = con.Conexion().prepareStatement("Delete FROM `hospitales` WHERE nombre=?;");
