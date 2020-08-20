@@ -81,6 +81,7 @@ public class Ingreso extends HttpServlet {
                 d.setContrasena(request.getParameter("contrasena"));
                 d.setHospital(request.getParameter("hospital"));
                 d.setEspecialidad(request.getParameter("especialidad"));
+                out.print("ingreso");
                 bd.InsertarDoctor_Doctores(d);
                 response.sendRedirect("VerDoctores.jsp");
             }
